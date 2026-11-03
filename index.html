@@ -47,6 +47,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14
 .logo-badge{font-size:11px;font-weight:700;letter-spacing:3px;color:#fff;background:var(--rojo);padding:3px 9px;border-radius:2px;white-space:nowrap}
 .htitle{color:#fff;font-size:15px;font-weight:600;white-space:nowrap}
 .hsub{color:#999;font-size:11px}
+@media(max-width:700px){
+  .hsub,.htitle{display:none}
+  .user-bar{gap:6px;font-size:12px}
+  .user-bar .uname{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
 .user-bar{display:flex;align-items:center;gap:10px;color:#ccc;font-size:13px}
 .user-bar .uname{font-weight:600;color:#fff}
 .urole{font-size:9px;font-weight:700;letter-spacing:.6px;padding:2px 8px;border-radius:10px}
@@ -200,6 +205,27 @@ tr.fila-descuento:hover td:first-child{background:#FBDCDC}
 .traz-alerta-titulo{font-size:12px;font-weight:700;color:var(--amber-text);display:flex;align-items:center;gap:6px;margin-bottom:4px}
 .traz-check{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--amber-text);font-weight:600;cursor:pointer;margin-top:6px}
 .traz-check input{width:16px;height:16px;accent-color:var(--amber);cursor:pointer}
+.np-hermanas{border:1px solid var(--border2);border-radius:var(--r);padding:12px 14px;margin:14px 0 4px;background:var(--surface)}
+.np-tit{font-size:12.5px;font-weight:700;color:var(--text)}
+.np-sub{font-size:11px;color:var(--text3);margin:3px 0 10px}
+.np-lista{display:flex;flex-direction:column;gap:6px;max-height:420px;overflow:auto}
+.np-linea{display:flex;gap:10px;align-items:flex-start;font-size:11.5px;padding:8px 10px;border-radius:6px;background:var(--bg);cursor:pointer}
+.np-linea.off{cursor:default;opacity:.7}
+.np-linea input[type=checkbox]{width:16px;height:16px;margin-top:1px;accent-color:var(--rojo);flex:none}
+.np-linea .art{font-weight:600;color:var(--text)}
+.np-linea .sub{color:var(--text3);font-size:10.5px;margin-top:2px}
+.np-linea .motivo{color:var(--amber-text);font-size:10.5px;font-weight:600;margin-top:2px}
+.np-linea .ok{color:var(--green-text);font-size:10.5px;font-weight:600;margin-top:2px}
+.np-oc{display:flex;align-items:center;gap:6px;margin-top:5px;font-size:10.5px;color:var(--amber-text);font-weight:600}
+.np-oc input{width:120px;padding:4px 8px;font-size:11px;border:1px solid var(--amber);border-radius:4px;background:#fff}
+.np-pie{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:11.5px}
+.np-pie button{font-size:11px;padding:5px 10px}
+.np-resumen{color:var(--text2);font-weight:600}
+.traz-unidad{border:1px solid var(--border2);border-left:4px solid var(--rojo);border-radius:var(--r);padding:10px 12px 2px;margin-bottom:10px;background:var(--surface)}
+.traz-unidad.con-error{border-left-color:var(--red);background:var(--red-bg)}
+.traz-unidad-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+.traz-unidad-tit{font-size:12px;font-weight:700;color:var(--text)}
+.traz-unidad-top button{font-size:10px;padding:4px 9px}
 
 #kpisMatafuegos .kpi .lbl,#kpisMatafuegos .kpi .val{text-align:center}
 .mata-kpi-titulo{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin:12px 0 8px}
@@ -277,7 +303,7 @@ tr.fila-descuento:hover td:first-child{background:#FBDCDC}
   <div class="hleft">
     <span class="logo-badge">GRIFFOULIERE</span>
     <span class="htitle">Notas de Pedido</span>
-    <span class="hsub">Tablero de gestión · mostrando 2026 en adelante</span>
+    <span class="hsub">Tablero de gestión · mostrando 2026 en adelante · <span title="Versión del tablero">v03.11.26-b</span></span>
   </div>
   <div class="user-bar">
     <span class="uname" id="userNombre">—</span>
@@ -362,6 +388,8 @@ tr.fila-descuento:hover td:first-child{background:#FBDCDC}
     <div class="tab" id="tab-btn-informe" onclick="goToTab('informe')"><i class="ti ti-mail"></i> Informe</div>
     <div class="tab" id="tab-btn-trazabilidad" onclick="goToTab('trazabilidad')"><i class="ti ti-shield-check"></i> Trazabilidad</div>
     <div class="tab" id="tab-btn-matafuegos" onclick="goToTab('matafuegos')"><i class="ti ti-fire-extinguisher"></i> Matafuegos</div>
+    <div class="tab" id="tab-btn-manguerotes" onclick="goToTab('manguerotes')"><i class="ti ti-circle-dashed"></i> Manguerotes</div>
+    <div class="tab" id="tab-btn-pernos" onclick="goToTab('pernos')"><i class="ti ti-tool"></i> Pernos</div>
     <div class="tab" id="tab-btn-log" onclick="goToTab('log')" style="display:none"><i class="ti ti-history"></i> Log de cambios</div>
     <div class="tab" id="tab-btn-usuarios" onclick="goToTab('usuarios')" style="display:none"><i class="ti ti-users"></i> Usuarios</div>
   </div>
@@ -537,6 +565,77 @@ tr.fila-descuento:hover td:first-child{background:#FBDCDC}
     <div id="matafuegosContent"><div class="loading"><div class="spinner"></div>Cargando…</div></div>
   </div>
 
+  <!-- ===== TAB MANGUEROTES (registro maestro 3" y 4") ===== -->
+  <div class="tcontent" id="tab-manguerotes">
+    <div class="filters-bar" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px">
+      <div class="fgrid" style="flex:1">
+        <div class="fi">
+          <label>Numeración</label>
+          <input type="text" id="filMangNumero" oninput="renderManguerotes()" placeholder="Buscar N°...">
+        </div>
+        <div class="fi">
+          <label>Diámetro</label>
+          <select id="filMangDiametro" onchange="renderManguerotes()">
+            <option value="">Todos</option>
+            <option value='3"'>3"</option>
+            <option value='4"'>4"</option>
+          </select>
+        </div>
+        <div class="fi">
+          <label>Estado</label>
+          <select id="filMangEstado" onchange="renderManguerotes()">
+            <option value="">Todos</option>
+            <option value="EN STOCK">En stock</option>
+            <option value="ENTREGADO">Entregado</option>
+            <option value="RETIRADO">Retirado</option>
+            <option value="BAJA">Baja</option>
+          </select>
+        </div>
+        <div class="fi">
+          <label>Destino / unidad</label>
+          <input type="text" id="filMangDestino" oninput="renderManguerotes()" placeholder="Buscar destino...">
+        </div>
+      </div>
+      <div class="ebtns">
+        <button onclick="exportarManguerotesExcel()"><i class="ti ti-file-spreadsheet"></i> Excel</button>
+        <button onclick="cargarTablaManguerotes()"><i class="ti ti-refresh"></i> Actualizar</button>
+        <button class="primary" onclick="abrirModalMangueroteNuevo()"><i class="ti ti-plus"></i> Nuevo manguerote</button>
+      </div>
+    </div>
+    <div id="kpisManguerotes"></div>
+    <div id="manguerotesContent"><div class="loading"><div class="spinner"></div>Cargando…</div></div>
+  </div>
+
+  <!-- ===== TAB PERNOS (pernos y tuercas superchupa + pernos de enganche) ===== -->
+  <div class="tcontent" id="tab-pernos">
+    <div class="filters-bar" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px">
+      <div class="fgrid" style="flex:1">
+        <div class="fi"><label>N° elemento</label><input type="text" id="filPernoNumero" oninput="renderPernos()" placeholder="Buscar N°..."></div>
+        <div class="fi"><label>Tipo</label>
+          <select id="filPernoTipo" onchange="renderPernos()">
+            <option value="">Todos</option><option>PERNO SUPERCHUPA</option><option>TUERCA SUPERCHUPA</option><option>PERNO ENGANCHE</option>
+          </select></div>
+        <div class="fi"><label>Material</label>
+          <select id="filPernoMaterial" onchange="renderPernos()">
+            <option value="">Todos</option><option>SAE 4140</option><option>INOX</option><option>OTRO</option><option value="__SIN">Sin informar</option>
+          </select></div>
+        <div class="fi"><label>Estado</label>
+          <select id="filPernoEstado" onchange="renderPernos()">
+            <option value="">Todos</option><option>COLOCADO</option><option>EN STOCK</option><option>RETIRADO</option><option>BAJA</option>
+          </select></div>
+        <div class="fi"><label>Unidad</label><input type="text" id="filPernoUnidad" oninput="renderPernos()" placeholder="Patente / interno..."></div>
+        <div class="fi"><label>Lote</label><input type="text" id="filPernoLote" oninput="renderPernos()" placeholder="Ej: A042026"></div>
+      </div>
+      <div class="ebtns">
+        <button onclick="exportarPernosExcel()"><i class="ti ti-file-spreadsheet"></i> Excel</button>
+        <button onclick="cargarTablaPernos()"><i class="ti ti-refresh"></i> Actualizar</button>
+        <button class="primary" onclick="abrirModalPernoNuevo()"><i class="ti ti-plus"></i> Nuevo elemento</button>
+      </div>
+    </div>
+    <div id="kpisPernos"></div>
+    <div id="pernosContent"><div class="loading"><div class="spinner"></div>Cargando…</div></div>
+  </div>
+
   <!-- ===== TAB LOG DE CAMBIOS (solo ADMINISTRADOR / PROPIETARIO) ===== -->
   <div class="tcontent" id="tab-log">
     <div class="tbl-card">
@@ -623,75 +722,34 @@ tr.fila-descuento:hover td:first-child{background:#FBDCDC}
       <textarea id="mObsDeposito" placeholder="Notas internas de gestión"></textarea>
     </div>
 
+    <div id="npHermanas" class="np-hermanas" style="display:none">
+      <div class="np-tit" id="npTitulo">Otros artículos de la NP que salen con esta transferencia</div>
+      <div class="np-sub" id="npSub"></div>
+      <div class="np-lista" id="npLista"></div>
+      <div class="np-pie">
+        <button type="button" id="npTildarTodos"><i class="ti ti-checks"></i> Tildar todos los habilitados</button>
+        <span class="np-resumen" id="npResumen"></span>
+      </div>
+    </div>
+
     <div id="trazSection" class="traz-section" style="display:none">
       <div class="traz-titulo" id="trazTitulo">Trazabilidad</div>
-      <div class="hint" style="margin-bottom:10px">Este artículo requiere trazabilidad. Todos los campos de abajo son obligatorios para poder guardar en estado CUMPLIDO. La Fecha de entrega se toma sola de la Fecha de Cumplimiento de arriba.</div>
+      <div class="hint" id="trazHintGeneral" style="margin-bottom:10px">Este artículo requiere trazabilidad <strong>por artículo</strong>: se arma una ficha por cada artículo de la Cantidad de la nota. Todos los campos son obligatorios para guardar en CUMPLIDO. La Fecha de entrega se toma de la Fecha de Cumplimiento.</div>
+      <div id="trazAvisoCantidad" class="traz-alerta-nuevo" style="display:none;margin-bottom:10px"></div>
+      <div id="trazAvisoGuardado" class="traz-info-registrado" style="display:none;margin-bottom:10px"></div>
 
-      <div class="row2">
+      <div class="row2" id="trazFilaResponsable" style="display:none">
         <div class="field">
-          <label id="trazLabelEntrega">N° de elemento que entrega</label>
-          <input type="text" id="tNElementoEntrega">
-        </div>
-        <div class="field" id="trazCampoRecambio" style="display:none">
-          <label>N° de matafuego que recambia</label>
-          <input type="text" id="tNElementoRecambio">
-          <div class="hint" id="trazRecambioInfo"></div>
+          <label>Responsable de la entrega (para todos los artículos)</label>
+          <input type="text" id="tResponsableEntrega" list="lstResponsablesEntrega">
+          <datalist id="lstResponsablesEntrega"></datalist>
         </div>
       </div>
 
-      <div class="row2" id="trazFilaPatente" style="display:none">
-        <div class="field">
-          <label>Patente de la unidad que lo recibe</label>
-          <input type="text" id="tPatenteDestino" placeholder="Ej: AB123CD">
-          <div class="hint">Se precarga con el Destino de la nota. Corregila si el destino no es una patente (base, sector, etc.)</div>
-        </div>
-      </div>
-
-      <div class="row2" id="trazFilaVencimientos" style="display:none">
-        <div class="field">
-          <label>Fecha vencimiento recarga</label>
-          <input type="date" id="tFechaVencRecarga">
-        </div>
-        <div class="field">
-          <label>Fecha vencimiento prueba</label>
-          <input type="date" id="tFechaVencPrueba">
-        </div>
-      </div>
-
-      <div class="row2" id="trazFilaCertificacion" style="display:none">
-        <div class="field">
-          <label id="trazLabelCertificacion">Fecha de certificación</label>
-          <input type="date" id="tFechaCertificacion">
-        </div>
-      </div>
-      <div class="row2" id="trazFilaCertificado" style="display:none">
-        <div class="field">
-          <label>N° de certificado</label>
-          <input type="text" id="tNCertificado">
-        </div>
-      </div>
-
-      <div id="trazMatafuegoRegistrado" class="traz-info-registrado" style="display:none"></div>
-
-      <div id="trazMatafuegoNuevo" class="traz-alerta-nuevo" style="display:none">
-        <div class="traz-alerta-titulo"><i class="ti ti-alert-triangle"></i> Este N° de matafuego no está registrado</div>
-        <div class="hint" style="margin-bottom:10px">Se va a dar de alta como matafuego nuevo. Verificá bien el número antes de guardar — si lo escribiste mal, vas a crear un registro duplicado.</div>
-        <div class="row2">
-          <div class="field">
-            <label>Capacidad (Kg)</label>
-            <input type="text" id="tCapacidadKg" placeholder="Ej: 10">
-          </div>
-          <div class="field">
-            <label>Tipo</label>
-            <input type="text" id="tTipoMatafuego" list="lstTiposMatafuego" placeholder="Ej: ABC">
-            <datalist id="lstTiposMatafuego"></datalist>
-          </div>
-        </div>
-        <label class="traz-check">
-          <input type="checkbox" id="tConfirmoNumero">
-          Confirmo que verifiqué el N° de matafuego y es correcto
-        </label>
-      </div>
+      <div id="trazUnidades"></div>
+      <datalist id="lstManguerotesStock"></datalist>
+      <datalist id="lstPernosStock"></datalist>
+      <datalist id="lstTiposMatafuego"></datalist>
     </div>
 
     <div class="modal-actions">
@@ -797,6 +855,98 @@ tr.fila-descuento:hover td:first-child{background:#FBDCDC}
   </div>
 </div>
 
+<!-- MODAL DE PERNO (alta manual / edición) -->
+<div class="modal-overlay" id="pernoModalOverlay">
+  <div class="modal">
+    <div class="modal-title" id="pernoModalTitulo"><i class="ti ti-tool"></i> Editar elemento</div>
+    <div class="modal-sub" id="pernoModalSub">—</div>
+    <div class="row2">
+      <div class="field"><label>N° de elemento</label><input type="text" id="pernoNumero"></div>
+      <div class="field"><label>Tipo</label>
+        <select id="pernoTipo"><option>PERNO SUPERCHUPA</option><option>TUERCA SUPERCHUPA</option><option>PERNO ENGANCHE</option></select></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>Material</label>
+        <select id="pernoMaterial"><option value="">Sin informar</option><option>SAE 4140</option><option>INOX</option><option>OTRO</option></select></div>
+      <div class="field"><label>Fecha de certificación / ensayo</label><input type="date" id="pernoFechaCert"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>N° de certificado</label><input type="text" id="pernoCertificado"></div>
+      <div class="field" id="pernoCampoEstado"><label>Estado</label>
+        <select id="pernoEstado"><option>COLOCADO</option><option>EN STOCK</option><option>RETIRADO</option><option>BAJA</option></select></div>
+    </div>
+    <div class="row2" id="pernoFilaUnidad">
+      <div class="field"><label>Unidad (patente / interno)</label><input type="text" id="pernoUnidad">
+        <div class="hint">Solo se guarda si el estado es COLOCADO</div></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>Lote</label><input type="text" id="pernoLote"></div>
+      <div class="field"><label>OC</label><input type="text" id="pernoOc"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>N° SRA (salida depósito)</label><input type="text" id="pernoSra"></div>
+      <div class="field"><label>Responsable</label><input type="text" id="pernoResponsable"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>Fecha registro</label><input type="date" id="pernoFechaRegistro"></div>
+      <div class="field" id="pernoCampoNp"><label>N° NP (nota de pedido)</label><input type="text" id="pernoNp">
+        <div class="hint">Solo si no se pudo vincular sola por la transferencia</div></div>
+    </div>
+    <div class="field"><label>Observaciones</label><textarea id="pernoObservaciones"></textarea></div>
+    <div class="modal-actions">
+      <button onclick="cerrarModalPerno()">Cancelar</button>
+      <button class="primary" id="btnGuardarPerno" onclick="guardarPerno()"><i class="ti ti-device-floppy"></i> Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE MANGUEROTE (alta manual / edición) -->
+<div class="modal-overlay" id="mangModalOverlay">
+  <div class="modal">
+    <div class="modal-title" id="mangModalTitulo"><i class="ti ti-circle-dashed"></i> Editar manguerote</div>
+    <div class="modal-sub" id="mangModalSub">—</div>
+
+    <div class="row2">
+      <div class="field">
+        <label>Numeración</label>
+        <input type="text" id="mangNumeracion" placeholder="Ej: 0129211">
+        <div class="hint" id="mangHintNumeracion"></div>
+      </div>
+      <div class="field">
+        <label>Diámetro</label>
+        <select id="mangDiametro">
+          <option value='3"'>3"</option>
+          <option value='4"'>4"</option>
+        </select>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>N° de certificado</label>
+        <input type="text" id="mangCertificado" placeholder="Ej: END-94">
+      </div>
+      <div class="field" id="mangCampoEstado">
+        <label>Estado</label>
+        <select id="mangEstado">
+          <option value="EN STOCK">EN STOCK</option>
+          <option value="ENTREGADO">ENTREGADO</option>
+          <option value="RETIRADO">RETIRADO</option>
+          <option value="BAJA">BAJA</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>Observaciones</label>
+      <textarea id="mangObservaciones" placeholder="Notas sobre este manguerote"></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button onclick="cerrarModalManguerote()">Cancelar</button>
+      <button class="primary" id="btnGuardarManguerote" onclick="guardarManguerote()"><i class="ti ti-device-floppy"></i> Guardar</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 </div><!-- /appRoot -->
@@ -816,6 +966,10 @@ let matafuegosCache = [];
 let filaEnEdicion = null;
 let usuarioEnEdicion = null;
 let matafuegoEnEdicion = null;
+let manguerotesCache = [];
+let pernosCache = [];
+let pernoEnEdicion = null;
+let mangueroteEnEdicion = null; // null = alta nueva
 let modoModalMatafuego = 'editar'; // 'editar' | 'nuevo'
 let vistaActual = 'articulos';
 let charts = {};
@@ -911,6 +1065,8 @@ function mostrarApp() {
   cargarUsuarios(); // todos los roles la necesitan: alimenta el desplegable de Responsable
   cargarTrazabilidad();
   cargarMatafuegos();
+  cargarManguerotes();
+  cargarPernos();
   cargarPedidos();
 }
 
@@ -940,6 +1096,8 @@ function goToTab(id) {
   if (id === 'informe') renderInforme();
   if (id === 'trazabilidad') cargarTablaTrazabilidad();
   if (id === 'matafuegos') cargarTablaMatafuegos();
+  if (id === 'manguerotes') cargarTablaManguerotes();
+  if (id === 'pernos') cargarTablaPernos();
   if (id === 'log') cargarLog();
   if (id === 'usuarios') cargarUsuarios();
 }
@@ -995,6 +1153,7 @@ async function cargarRestoEnSegundoPlano() {
     const data = await apiGet({ action: 'getPedidosCompletos', anioDesde: '2026' });
     pedidosCache = ordenarPorNP(data.pedidos);
     cargaCompleta = true;
+    actualizarModoVistaBar(); // saca el aviso "terminando de cargar…" (antes quedaba fijo)
     poblarFiltrosDinamicos();
     onFiltrosChange();
   } catch (err) {
@@ -1614,6 +1773,135 @@ function poblarSelectResponsable(valorActual) {
   sel.value = valorActual || '';
 }
 
+/*******************************************************
+ * OTROS ARTÍCULOS DE LA NP QUE SALEN CON LA MISMA TRANSFERENCIA
+ * Se tildan los que corresponden; a esos se les carga CUMPLIDO,
+ * transferencia, responsable y fecha (y la OC si les faltaba).
+ *******************************************************/
+let npSeleccion = {}; // { fila: { tildado: bool, oc: '' } } — se conserva mientras se edita el modal
+const vacioTxt = (v) => !String(v == null ? '' : v).trim();
+
+function lineasHermanas(p) {
+  return pedidosCache.filter(x => String(x.np) === String(p.np) && x.fila !== p.fila).sort((a, b) => a.fila - b.fila);
+}
+
+// Situación de cada artículo hermano: { habilitado, texto, clase, necesitaOc, yaCumplida }
+function situacionHermana(x, transferencia) {
+  const t = String(x.transferencia || '').trim();
+  if (x.estado === 'RECHAZADO') return { habilitado: false, texto: 'Rechazada', clase: 'motivo' };
+  if (t) {
+    if (x.estado === 'CUMPLIDO' && t === transferencia) return { habilitado: false, yaCumplida: true, texto: 'Ya cumplida con la transferencia ' + t, clase: 'ok' };
+    return { habilitado: false, texto: 'Ya tiene transferencia ' + t, clase: 'motivo' };
+  }
+  if (x.categoriaTrazabilidad) return { habilitado: false, texto: 'Requiere trazabilidad: cerrar desde su Gestionar', clase: 'motivo' };
+  const s = { habilitado: true, texto: '', clase: 'sub' };
+  if (!vacioTxt(x.pim) && vacioTxt(x.ordenCompra)) s.necesitaOc = true;
+  if (x.estado === 'CUMPLIDO EN DEPOSITO' && x.fechaCumplimientoISO) s.texto = 'Conserva su fecha ' + x.fechaCumplimientoISO.split('-').reverse().join('/');
+  return s;
+}
+
+function npPuedeMostrarse() {
+  return filaEnEdicion && document.getElementById('mEstado').value === 'CUMPLIDO' &&
+    !vacioTxt(document.getElementById('mTransferencia').value) && lineasHermanas(filaEnEdicion).length > 0;
+}
+
+function renderHermanas() {
+  const caja = document.getElementById('npHermanas');
+  if (!npPuedeMostrarse()) { caja.style.display = 'none'; return; }
+  caja.style.display = 'block';
+  const p = filaEnEdicion;
+  const transf = document.getElementById('mTransferencia').value.trim();
+  const fecha = document.getElementById('mFechaCumplimiento').value;
+  const resp = document.getElementById('mResponsable').value;
+  document.getElementById('npTitulo').textContent = 'Otros artículos de la NP ' + p.np + ' que salen con la transferencia ' + transf;
+  document.getElementById('npSub').innerHTML = 'Tildá los que corresponden. Se cierran como CUMPLIDO con responsable <strong>' +
+    escapeHtml(resp || '(sin responsable)') + '</strong> y fecha <strong>' + (fecha ? fecha.split('-').reverse().join('/') : '(cargala arriba)') + '</strong>.';
+
+  document.getElementById('npLista').innerHTML = lineasHermanas(p).map(x => {
+    const s = situacionHermana(x, transf);
+    const sel = npSeleccion[x.fila] || (npSeleccion[x.fila] = { tildado: false, oc: '' });
+    if (!s.habilitado) sel.tildado = false;
+    const ocFaltante = s.necesitaOc && vacioTxt(sel.oc);
+    if (ocFaltante) sel.tildado = false;
+    const marcado = s.yaCumplida || sel.tildado;
+    const bloqueado = !s.habilitado || ocFaltante;
+    return `<label class="np-linea ${s.habilitado ? '' : 'off'}">
+      <input type="checkbox" data-np-fila="${x.fila}" ${marcado ? 'checked' : ''} ${bloqueado ? 'disabled' : ''}>
+      <div style="flex:1">
+        <div class="art">${escapeHtml(x.articulo || '')}${x.cantidad ? ' (x' + escapeHtml(String(x.cantidad)) + ')' : ''}</div>
+        <div class="sub">${escapeHtml(x.estado || 'SIN ESTADO')}</div>
+        ${s.texto ? `<div class="${s.clase}">${escapeHtml(s.texto)}</div>` : ''}
+        ${s.necesitaOc ? `<div class="np-oc">Falta OC: <input type="text" data-np-oc="${x.fila}" value="${escapeHtml(sel.oc)}" placeholder="N° de OC"></div>` : ''}
+      </div></label>`;
+  }).join('');
+  actualizarResumenNp();
+}
+
+function seleccionNp() {
+  if (!npPuedeMostrarse()) return [];
+  const transf = document.getElementById('mTransferencia').value.trim();
+  return lineasHermanas(filaEnEdicion).filter(x => {
+    const s = situacionHermana(x, transf), sel = npSeleccion[x.fila];
+    return s.habilitado && sel && sel.tildado && !(s.necesitaOc && vacioTxt(sel.oc));
+  });
+}
+
+function actualizarResumenNp() {
+  const elegidos = seleccionNp();
+  const transf = document.getElementById('mTransferencia').value.trim();
+  const conservan = elegidos.filter(x => x.estado === 'CUMPLIDO EN DEPOSITO' && x.fechaCumplimientoISO).length;
+  const conOc = elegidos.filter(x => situacionHermana(x, transf).necesitaOc).length;
+  document.getElementById('npResumen').textContent = !elegidos.length ? 'Ninguno tildado' :
+    'Se van a cerrar ' + elegidos.length + (elegidos.length === 1 ? ' artículo más' : ' artículos más') +
+    (conservan ? ' · ' + conservan + ' conserva' + (conservan > 1 ? 'n' : '') + ' su fecha' : '') +
+    (conOc ? ' · ' + conOc + ' con OC nueva' : '');
+}
+
+document.getElementById('npLista').addEventListener('change', (ev) => {
+  const f = ev.target.dataset.npFila;
+  if (f) { npSeleccion[f].tildado = ev.target.checked; actualizarResumenNp(); }
+});
+document.getElementById('npLista').addEventListener('input', (ev) => {
+  const f = ev.target.dataset.npOc;
+  if (!f) return;
+  npSeleccion[f].oc = ev.target.value;
+  const chk = document.querySelector(`[data-np-fila="${f}"]`);
+  const vacia = vacioTxt(ev.target.value);
+  chk.disabled = vacia;                       // sin OC no se puede tildar
+  if (vacia) { chk.checked = false; npSeleccion[f].tildado = false; }
+  actualizarResumenNp();
+});
+document.getElementById('npTildarTodos').addEventListener('click', () => {
+  document.querySelectorAll('#npLista input[data-np-fila]').forEach(chk => {
+    if (!chk.disabled) { chk.checked = true; npSeleccion[chk.dataset.npFila].tildado = true; }
+  });
+  actualizarResumenNp();
+});
+['mTransferencia', 'mFechaCumplimiento'].forEach(id => document.getElementById(id).addEventListener('input', renderHermanas));
+['mEstado', 'mResponsable'].forEach(id => document.getElementById(id).addEventListener('change', renderHermanas));
+
+// Se llama después de guardar la línea principal. Devuelve el texto para el aviso final.
+async function cerrarHermanasTildadas(p, elegidos, datos) {
+  if (!elegidos.length) return '';
+  const transf = datos.transferencia;
+  const items = elegidos.map(x => ({ fila: x.fila, oc: situacionHermana(x, transf).necesitaOc ? (npSeleccion[x.fila].oc || '').trim() : '' }));
+  try {
+    const r = await apiGet({ action: 'cerrarArticulosNota', np: p.np, filaOrigen: p.fila, transferencia: transf,
+      fechaCumplimiento: datos.fecha, responsable: datos.responsable, items: JSON.stringify(items),
+      usuario: currentUser.usuario, nombreUsuario: currentUser.nombre });
+    (r.pedidos || []).forEach(nuevo => {
+      nuevo.deposito = clasificarDeposito(nuevo.centroCosto);
+      const i = pedidosCache.findIndex(x => x.fila === nuevo.fila);
+      if (i >= 0) pedidosCache[i] = nuevo;
+    });
+    let msg = ' y ' + r.cerrados.length + (r.cerrados.length === 1 ? ' artículo más' : ' artículos más') + ' de la NP';
+    if (r.omitidos.length) msg += '. No se cerraron: ' + r.omitidos.join('; ');
+    return msg;
+  } catch (err) {
+    return '. Los otros artículos NO se cerraron: ' + err.message;
+  }
+}
+
 function abrirModal(fila) {
   const p = pedidosCache.find(x => x.fila === fila);
   if (!p) return;
@@ -1638,6 +1926,8 @@ function abrirModal(fila) {
 
   actualizarBloqueoFechaCumplimiento();
   actualizarSeccionTrazabilidad(p, true);
+  npSeleccion = {};
+  renderHermanas();
   document.getElementById('modalOverlay').classList.add('open');
 }
 
@@ -1699,186 +1989,452 @@ function isoDesdeDDMMYYYY(str) {
 }
 
 const NOMBRE_CATEGORIA_TRAZ = { MATAFUEGO: 'Matafuego', IZAJE: 'Elemento de izaje', ENGANCHE: 'Perno de enganche', SUPERCHUPA: 'Perno superchupa', MANOVACUOMETRO: 'Manovacuómetro', VALVULA_PSV: 'Válvula PSV', MANGUEROTE: 'Manguerote' };
-const LABEL_ENTREGA_TRAZ = { MATAFUEGO: 'N° de matafuego que entrega', IZAJE: 'N° de elemento', ENGANCHE: 'N° de elemento', SUPERCHUPA: 'N° de elemento', MANOVACUOMETRO: 'N° de elemento', VALVULA_PSV: 'N° de elemento', MANGUEROTE: 'N° de manguerote' };
+const MAX_UNIDADES_TRAZ = 30;
 
-// Campos obligatorios por categoría cuando el Estado que se guarda es CUMPLIDO:
-// TODOS los campos que quedan visibles para esa categoría, sin excepción.
-const CAMPOS_OBLIGATORIOS_TRAZ = {
-  MATAFUEGO: [
-    { id: 'tNElementoEntrega', label: 'N° de matafuego que entrega' },
-    { id: 'tNElementoRecambio', label: 'N° de matafuego que recambia' },
-    { id: 'tPatenteDestino', label: 'Patente de la unidad que lo recibe' },
-    { id: 'tFechaVencRecarga', label: 'Fecha vencimiento recarga' },
-    { id: 'tFechaVencPrueba', label: 'Fecha vencimiento prueba' }
-  ],
-  IZAJE: [
-    { id: 'tNElementoEntrega', label: 'N° de elemento' },
-    { id: 'tFechaCertificacion', label: 'Fecha de certificación' },
-    { id: 'tNCertificado', label: 'N° de certificado' }
-  ],
-  ENGANCHE: [
-    { id: 'tNElementoEntrega', label: 'N° de elemento' },
-    { id: 'tFechaCertificacion', label: 'Fecha de certificación' }
-  ],
-  SUPERCHUPA: [
-    { id: 'tNElementoEntrega', label: 'N° de elemento' },
-    { id: 'tFechaCertificacion', label: 'Fecha de certificación/ensayo' }
-  ],
-  MANOVACUOMETRO: [
-    { id: 'tNElementoEntrega', label: 'N° de elemento' },
-    { id: 'tFechaCertificacion', label: 'Fecha de certificación' }
-  ],
-  VALVULA_PSV: [
-    { id: 'tNElementoEntrega', label: 'N° de elemento' },
-    { id: 'tFechaCertificacion', label: 'Fecha de certificación' }
-  ],
-  MANGUEROTE: [
-    { id: 'tNElementoEntrega', label: 'N° de manguerote' },
-    { id: 'tNCertificado', label: 'N° de certificado' }
-  ]
+// Campos de cada FICHA DE UNIDAD por categoría. Todos son obligatorios en CUMPLIDO.
+const CAMPOS_UNIDAD_TRAZ = {
+  MATAFUEGO:      ['entrega', 'recambio', 'patente', 'vencRecarga', 'vencPrueba'],
+  IZAJE:          ['entrega', 'fechaCert', 'nCert'],
+  ENGANCHE:       ['entrega', 'recambio', 'patente', 'fechaCert', 'nCert'],
+  SUPERCHUPA:     ['entrega', 'recambio', 'patente', 'fechaCert', 'nCert'],
+  MANOVACUOMETRO: ['entrega', 'fechaCert'],
+  VALVULA_PSV:    ['entrega', 'fechaCert'],
+  MANGUEROTE:     ['entrega', 'recambio', 'nCert']
 };
+function labelCampoTraz(cat, campo) {
+  const L = {
+    entrega: { MATAFUEGO: 'N° de matafuego que entrega', MANGUEROTE: 'N° de manguerote que se entrega', _: 'N° de elemento' },
+    recambio: { MATAFUEGO: 'N° de matafuego que recambia', MANGUEROTE: 'N° de manguerote viejo (NA si no hay)',
+      SUPERCHUPA: 'N° del elemento retirado (NA si no hay)', ENGANCHE: 'N° del perno retirado (NA si no hay)', _: 'N° que recambia' },
+    patente: { SUPERCHUPA: 'Unidad que lo recibe (patente / interno)', ENGANCHE: 'Unidad que lo recibe (patente / interno)', _: 'Patente de la unidad que lo recibe' },
+    vencRecarga: { _: 'Fecha vencimiento recarga' },
+    vencPrueba: { _: 'Fecha vencimiento prueba' },
+    fechaCert: { SUPERCHUPA: 'Fecha de certificación/ensayo', _: 'Fecha de certificación' },
+    nCert: { _: 'N° de certificado' }
+  };
+  return (L[campo][cat] || L[campo]._);
+}
+const TIPO_CAMPO_TRAZ = { vencRecarga: 'date', vencPrueba: 'date', fechaCert: 'date' };
+// Campos que se pueden copiar de la unidad 1 a las demás (los N° son únicos, no se copian)
+const CAMPOS_COPIABLES_TRAZ = ['patente', 'vencRecarga', 'vencPrueba', 'fechaCert', 'nCert', 'capacidad', 'tipo'];
 
+let unidadesTrazN = 0;          // cuántas fichas hay armadas en el modal
+// Trazabilidad que se está guardando en segundo plano, por fila de nota: así,
+// si se vuelve a abrir la nota antes de que termine, se ve lo recién cargado.
+const trazEnviando = {};
+let trazConsultaFila = null;     // fila cuya trazabilidad se está consultando al abrir el modal
+const idU = (campo, i) => 'tu-' + campo + '-' + i;
+const valU = (campo, i) => { const el = document.getElementById(idU(campo, i)); return el ? el.value.trim() : ''; };
+
+// "0129201" y "129201" son el mismo N° (Sheets a veces se come el cero)
+function normalizarNumero(v) {
+  return String(v == null ? '' : v).trim().toUpperCase().replace(/^0+(?=\d)/, '');
+}
+function diametroDesdeTexto(texto) {
+  const m = String(texto || '').toUpperCase().match(/(\d+(?:[.,]\d+)?)\s*(?:''|"|”|″|´´|’’|PULG)/);
+  return m ? m[1].replace(',', '.') + '"' : '';
+}
+function buscarMangueroteCache(numero) {
+  const n = normalizarNumero(numero);
+  return n ? manguerotesCache.find(m => normalizarNumero(m.numeracion) === n) : null;
+}
+const esCategoriaPerno = (cat) => cat === 'SUPERCHUPA' || cat === 'ENGANCHE';
+function tipoPernoDesdeTexto(articulo, cat) {
+  const t = String(articulo || '').toUpperCase();
+  if (cat === 'ENGANCHE') return 'PERNO ENGANCHE';
+  if (t.includes('TUERCA') || t.includes('0302701324')) return 'TUERCA SUPERCHUPA';
+  return 'PERNO SUPERCHUPA';
+}
+function buscarPernoCache(tipo, numero) {
+  const n = normalizarNumero(numero);
+  return n ? pernosCache.find(x => x.tipo === tipo && normalizarNumero(x.numero) === n) : null;
+}
+function buscarMatafuegoCache(numero) {
+  const n = normalizarNumero(numero);
+  return n ? matafuegosCache.find(m => normalizarNumero(m.nMatafuego) === n) : null;
+}
+
+// Cantidad de unidades a trazar = Cantidad de la nota (entero, mínimo 1, tope MAX)
+function cantidadUnidadesTraz(p) {
+  const c = Math.floor(parseFloat(String(p.cantidad == null ? '' : p.cantidad).replace(',', '.')));
+  const n = isFinite(c) && c >= 1 ? c : 1;
+  return { n: Math.min(n, MAX_UNIDADES_TRAZ), original: p.cantidad, recortada: n > MAX_UNIDADES_TRAZ, invalida: !(isFinite(c) && c >= 1) };
+}
+
+function htmlCampoUnidad(cat, campo, i) {
+  const tipo = TIPO_CAMPO_TRAZ[campo] || 'text';
+  const lista = campo !== 'entrega' ? '' :
+    cat === 'MANGUEROTE' ? ' list="lstManguerotesStock" autocomplete="off"' :
+    esCategoriaPerno(cat) ? ' list="lstPernosStock" autocomplete="off"' : '';
+  const info = (campo === 'entrega' || campo === 'recambio') ? `<div class="hint" id="${idU(campo + 'Info', i)}"></div>` : '';
+  return `<div class="field"><label>${escapeHtml(labelCampoTraz(cat, campo))}</label>
+    <input type="${tipo}" id="${idU(campo, i)}"${lista} data-u="${i}" data-campo="${campo}">${info}</div>`;
+}
+
+function htmlUnidad(cat, i, n) {
+  const campos = CAMPOS_UNIDAD_TRAZ[cat] || ['entrega'];
+  let filas = '';
+  for (let k = 0; k < campos.length; k += 2) {
+    filas += `<div class="row2">${htmlCampoUnidad(cat, campos[k], i)}${campos[k + 1] ? htmlCampoUnidad(cat, campos[k + 1], i) : ''}</div>`;
+  }
+  const extraMatafuego = cat !== 'MATAFUEGO' ? '' : `
+    <div id="${idU('mataReg', i)}" class="traz-info-registrado" style="display:none;margin-bottom:10px"></div>
+    <div id="${idU('mataNuevo', i)}" class="traz-alerta-nuevo" style="display:none;margin-bottom:10px">
+      <div class="traz-alerta-titulo"><i class="ti ti-alert-triangle"></i> Este N° de matafuego no está registrado</div>
+      <div class="hint" style="margin-bottom:8px">Se da de alta como nuevo. Verificá bien el número: si está mal escrito, se crea un registro duplicado.</div>
+      <div class="row2">
+        <div class="field"><label>Capacidad (Kg)</label><input type="text" id="${idU('capacidad', i)}" data-u="${i}" placeholder="Ej: 10"></div>
+        <div class="field"><label>Tipo</label><input type="text" id="${idU('tipo', i)}" data-u="${i}" list="lstTiposMatafuego" placeholder="Ej: ABC"></div>
+      </div>
+      <label class="traz-check"><input type="checkbox" id="${idU('confirmo', i)}"> Confirmo que verifiqué el N° de matafuego y es correcto</label>
+    </div>`;
+  const copiar = (i === 1 && n > 1) ? `<button type="button" onclick="copiarUnidad1ATodas()"><i class="ti ti-copy"></i> Copiar datos a los demás</button>` : '';
+  return `<div class="traz-unidad" id="${idU('card', i)}">
+    <div class="traz-unidad-top"><span class="traz-unidad-tit">Artículo ${i} de ${n}</span>${copiar}</div>
+    ${filas}${extraMatafuego}</div>`;
+}
+
+// Se llama al abrir el modal (precargarValores = true) y cada vez que cambia
+// el Estado (false: solo muestra/oculta, no pisa lo ya tipeado).
 function actualizarSeccionTrazabilidad(p, precargarValores) {
   const cat = p ? p.categoriaTrazabilidad : '';
-  const estadoActual = document.getElementById('mEstado').value;
   const section = document.getElementById('trazSection');
+  if (!cat) { section.style.display = 'none'; unidadesTrazN = 0; return; }
 
-  // Solo se pide/guarda trazabilidad cuando el pedido está CUMPLIDO — antes
-  // de eso (Pendiente, En Proceso, Cumplido en Depósito) o si se Rechaza,
-  // todavía no hay datos reales para cargar.
-  if (!cat || estadoActual !== 'CUMPLIDO') { section.style.display = 'none'; return; }
-  section.style.display = 'block';
-
-  document.getElementById('trazTitulo').innerHTML = '<i class="ti ti-shield-check"></i> Trazabilidad — ' + (NOMBRE_CATEGORIA_TRAZ[cat] || cat);
-  document.getElementById('trazLabelEntrega').textContent = LABEL_ENTREGA_TRAZ[cat] || 'N° de elemento';
-  document.getElementById('trazCampoRecambio').style.display = cat === 'MATAFUEGO' ? 'block' : 'none';
-  document.getElementById('trazFilaPatente').style.display = cat === 'MATAFUEGO' ? 'grid' : 'none';
-  document.getElementById('trazFilaVencimientos').style.display = cat === 'MATAFUEGO' ? 'grid' : 'none';
-  document.getElementById('trazFilaCertificacion').style.display = (cat === 'IZAJE' || cat === 'ENGANCHE' || cat === 'SUPERCHUPA' || cat === 'MANOVACUOMETRO' || cat === 'VALVULA_PSV') ? 'grid' : 'none';
-  document.getElementById('trazFilaCertificado').style.display = (cat === 'IZAJE' || cat === 'MANGUEROTE') ? 'grid' : 'none';
-  document.getElementById('trazLabelCertificacion').textContent = cat === 'SUPERCHUPA' ? 'Fecha de certificación/ensayo' : 'Fecha de certificación';
-
-  if (cat === 'MATAFUEGO') {
-    verificarMatafuegoRegistrado();
-  } else {
-    document.getElementById('trazMatafuegoRegistrado').style.display = 'none';
-    document.getElementById('trazMatafuegoNuevo').style.display = 'none';
-  }
-
-  // Los valores ya cargados solo se releen al abrir el modal, no cada vez que
-  // se toca el Estado (para no pisar lo que la persona ya tipeó en el ratito).
-  if (!precargarValores) return;
-  const existente = trazabilidadCache.find(t => Number(t.filaOrigen) === p.fila && t.categoria === cat);
-  document.getElementById('tNElementoEntrega').value = existente ? (existente.nElementoEntrega || '') : '';
-  document.getElementById('tNElementoRecambio').value = existente ? (existente.nElementoRecambio || '') : '';
-  document.getElementById('tFechaVencRecarga').value = existente ? isoDesdeDDMMYYYY(existente.fechaVencRecarga) : '';
-  document.getElementById('tFechaVencPrueba').value = existente ? isoDesdeDDMMYYYY(existente.fechaVencPrueba) : '';
-  document.getElementById('tFechaCertificacion').value = existente ? isoDesdeDDMMYYYY(existente.fechaCertificacion) : '';
-  document.getElementById('tNCertificado').value = existente ? (existente.nCertificado || '') : '';
-  document.getElementById('tPatenteDestino').value = String(p.destino || '').trim().toUpperCase();
-  document.getElementById('tCapacidadKg').value = '';
-  document.getElementById('tTipoMatafuego').value = '';
-  document.getElementById('tConfirmoNumero').checked = false;
-  if (cat === 'MATAFUEGO') {
-    verificarMatafuegoRegistrado();
-    verificarMatafuegoRecambio();
-  }
+  if (precargarValores) armarUnidadesTraz(p, cat);
+  // Solo se pide trazabilidad al pasar a CUMPLIDO (antes no hay datos reales)
+  section.style.display = document.getElementById('mEstado').value === 'CUMPLIDO' ? 'block' : 'none';
 }
 
-// Chequea si el N° de matafuego tipeado ya existe en el registro maestro
-// (pestaña "Matafuegos"). Si no existe, muestra el aviso + pide Capacidad y
-// Tipo para darlo de alta, con una confirmación explícita del número.
-function verificarMatafuegoRegistrado() {
-  const numero = document.getElementById('tNElementoEntrega').value.trim();
-  const bloqueRegistrado = document.getElementById('trazMatafuegoRegistrado');
-  const bloqueNuevo = document.getElementById('trazMatafuegoNuevo');
+function armarUnidadesTraz(p, cat) {
+  const cant = cantidadUnidadesTraz(p);
+  const n = cant.n;
+  unidadesTrazN = n;
 
-  if (!numero) {
-    bloqueRegistrado.style.display = 'none';
-    bloqueNuevo.style.display = 'none';
-    return;
-  }
-
-  const existente = matafuegosCache.find(m => m.nMatafuego.trim().toLowerCase() === numero.toLowerCase());
-  if (existente) {
-    bloqueRegistrado.style.display = 'flex';
-    bloqueRegistrado.innerHTML = `<i class="ti ti-circle-check"></i> Matafuego ya registrado: ${escapeHtml(existente.capacidadKg || '—')} Kg, Tipo ${escapeHtml(existente.tipo || '—')}`;
-    bloqueNuevo.style.display = 'none';
+  document.getElementById('trazTitulo').innerHTML = '<i class="ti ti-shield-check"></i> Trazabilidad — ' +
+    escapeHtml(esCategoriaPerno(cat) ? tipoPernoDesdeTexto(p.articulo, cat).charAt(0) + tipoPernoDesdeTexto(p.articulo, cat).slice(1).toLowerCase()
+      : (NOMBRE_CATEGORIA_TRAZ[cat] || cat)) + ' · ' + n + (n === 1 ? ' artículo' : ' artículos');
+  const aviso = document.getElementById('trazAvisoCantidad');
+  if (cant.recortada || cant.invalida) {
+    aviso.style.display = 'block';
+    aviso.innerHTML = cant.recortada
+      ? `<i class="ti ti-alert-triangle"></i> La nota tiene Cantidad ${escapeHtml(String(cant.original))}: se muestran las primeras ${MAX_UNIDADES_TRAZ} fichas (máximo por ítem).`
+      : `<i class="ti ti-alert-triangle"></i> La Cantidad de la nota (${escapeHtml(String(cant.original || 'vacía'))}) no es un número válido: se toma 1 artículo.`;
   } else {
-    bloqueRegistrado.style.display = 'none';
-    bloqueNuevo.style.display = 'block';
+    aviso.style.display = 'none';
   }
+
+  document.getElementById('trazFilaResponsable').style.display = cat === 'MANGUEROTE' ? 'grid' : 'none';
+
+  let html = '';
+  for (let i = 1; i <= n; i++) html += htmlUnidad(cat, i, n);
+  document.getElementById('trazUnidades').innerHTML = html;
+
+  // Precarga: lo ya guardado de cada artículo (por N° de ítem). Prioridad:
+  // 1) lo que se está guardando ahora mismo, 2) la copia local de la hoja Trazabilidad.
+  const enviando = trazEnviando[p.fila] && trazEnviando[p.fila].categoria === cat ? trazEnviando[p.fila].registros : null;
+  const existentes = (enviando || trazabilidadCache.filter(t => Number(t.filaOrigen) === p.fila && t.categoria === cat))
+    .slice().sort((a, b) => (a.item || 1) - (b.item || 1));
+  const set = (campo, i, v) => { const el = document.getElementById(idU(campo, i)); if (el) el.value = v || ''; };
+  for (let i = 1; i <= n; i++) {
+    const e = existentes.find(t => (t.item || 1) === i);
+    set('entrega', i, e && e.nElementoEntrega);
+    set('recambio', i, e && e.nElementoRecambio);
+    set('vencRecarga', i, e && isoDesdeDDMMYYYY(e.fechaVencRecarga));
+    set('vencPrueba', i, e && isoDesdeDDMMYYYY(e.fechaVencPrueba));
+    set('fechaCert', i, e && isoDesdeDDMMYYYY(e.fechaCertificacion));
+    set('nCert', i, e && e.nCertificado);
+    set('patente', i, String((e && e.patenteDestino) || unidadGuardadaEnRegistro(cat, p, e) || p.destino || '').trim().toUpperCase());
+  }
+  mostrarAvisoGuardado(existentes, !!enviando);
+  // Nota ya cerrada y la copia local todavía no tiene sus datos (recién abierta la página,
+  // o la recarga en segundo plano no terminó): se consulta solo esta nota.
+  if (!existentes.length && p.estado === 'CUMPLIDO') consultarTrazabilidadDeNota(p, cat);
+  const respGuardado = existentes.find(t => t.responsableEntrega);
+  document.getElementById('tResponsableEntrega').value = respGuardado ? respGuardado.responsableEntrega : (currentUser ? currentUser.nombre : '');
+
+  if (cat === 'MANGUEROTE') poblarSugerenciasManguerote(p);
+  if (esCategoriaPerno(cat)) {
+    const tipo = tipoPernoDesdeTexto(p.articulo, cat);
+    document.getElementById('lstPernosStock').innerHTML = pernosCache
+      .filter(x => x.tipo === tipo && x.estado === 'EN STOCK')
+      .map(x => `<option value="${escapeHtml(x.numero)}">${escapeHtml(x.material || '')} · Cert. ${escapeHtml(x.nCertificado || 's/d')}</option>`).join('');
+  }
+  verificarTodasLasUnidades();
 }
-document.getElementById('tNElementoEntrega').addEventListener('input', () => {
-  if (filaEnEdicion && filaEnEdicion.categoriaTrazabilidad === 'MATAFUEGO') {
-    verificarMatafuegoRegistrado();
-    verificarMatafuegoRecambio();
-  }
+
+// Un solo listener para todas las fichas (se re-arman en cada apertura)
+document.getElementById('trazUnidades').addEventListener('input', (ev) => {
+  if (!ev.target.dataset || !ev.target.dataset.u) return;
+  verificarTodasLasUnidades(); // los duplicados entre unidades dependen de todas
 });
 
-// Informa qué va a pasar con el matafuego que se retira de la unidad:
-// si está en el registro maestro, se lo desasigna de su patente y se deja
-// constancia en Observaciones; si no está, no se toca el maestro.
-function verificarMatafuegoRecambio() {
-  const info = document.getElementById('trazRecambioInfo');
-  const numero = document.getElementById('tNElementoRecambio').value.trim();
-  const entrega = document.getElementById('tNElementoEntrega').value.trim();
-  info.classList.remove('hint-lock');
-  info.style.color = '';
+// Registros anteriores a la columna "Patente / Unidad": se toma la unidad del registro maestro
+function unidadGuardadaEnRegistro(cat, p, e) {
+  if (!e || !e.nElementoEntrega) return '';
+  if (cat === 'MATAFUEGO') { const m = buscarMatafuegoCache(e.nElementoEntrega); return m ? m.patente : ''; }
+  if (esCategoriaPerno(cat)) { const x = buscarPernoCache(tipoPernoDesdeTexto(p.articulo, cat), e.nElementoEntrega); return x ? x.unidad : ''; }
+  return '';
+}
 
-  if (!numero) { info.textContent = ''; return; }
-  if (entrega && numero.toLowerCase() === entrega.toLowerCase()) {
-    info.textContent = 'El N° que recambia no puede ser el mismo que el que entrega';
-    info.classList.add('hint-lock');
-    return;
-  }
-  const existente = matafuegosCache.find(m => m.nMatafuego.trim().toLowerCase() === numero.toLowerCase());
-  if (existente) {
-    info.textContent = 'Registrado (patente actual: ' + (existente.patente || 'sin asignar') + '). Al guardar queda desasignado y marcado como retirado.';
-    info.style.color = 'var(--green-text)';
-  } else {
-    info.textContent = 'No está en el registro de matafuegos: se guarda en Trazabilidad, pero no se actualiza el maestro.';
-    info.style.color = 'var(--amber-text)';
+function mostrarAvisoGuardado(existentes, enviando) {
+  const caja = document.getElementById('trazAvisoGuardado');
+  if (!existentes.length) { caja.style.display = 'none'; return; }
+  const r = existentes[0];
+  caja.style.display = 'flex';
+  caja.innerHTML = enviando
+    ? '<i class="ti ti-loader-2"></i> Estos datos se están guardando en este momento.'
+    : `<i class="ti ti-circle-check"></i> Trazabilidad ya cargada${r.fechaCarga ? ' el ' + escapeHtml(r.fechaCarga) : ''}${r.usuario ? ' por ' + escapeHtml(r.usuario) : ''}. Si corregís algún dato, al guardar se actualiza el registro.`;
+}
+
+async function consultarTrazabilidadDeNota(p, cat) {
+  if (trazConsultaFila === p.fila) return;
+  trazConsultaFila = p.fila;
+  const caja = document.getElementById('trazAvisoGuardado');
+  caja.style.display = 'flex';
+  caja.innerHTML = '<i class="ti ti-loader-2"></i> Buscando los datos ya cargados de esta nota…';
+  try {
+    const data = await apiGet({ action: 'getTrazabilidadNota', filaOrigen: p.fila });
+    const regs = (data.registros || []).filter(t => t.categoria === cat);
+    // actualiza la copia local con lo que vino
+    trazabilidadCache = trazabilidadCache.filter(t => Number(t.filaOrigen) !== p.fila).concat(data.registros || []);
+    const sigueAbierta = filaEnEdicion && filaEnEdicion.fila === p.fila;
+    const nadaTipeado = [...Array(unidadesTrazN)].every((_, k) => !valU('entrega', k + 1));
+    if (sigueAbierta && nadaTipeado && regs.length) armarUnidadesTraz(filaEnEdicion, cat);
+    else if (sigueAbierta && !regs.length) caja.style.display = 'none';
+  } catch (err) {
+    caja.innerHTML = '<i class="ti ti-alert-triangle"></i> No se pudieron traer los datos ya cargados: cerrá y volvé a abrir la nota.';
+  } finally {
+    trazConsultaFila = null;
   }
 }
-document.getElementById('tNElementoRecambio').addEventListener('input', () => {
-  if (filaEnEdicion && filaEnEdicion.categoriaTrazabilidad === 'MATAFUEGO') verificarMatafuegoRecambio();
-});
 
-async function guardarTrazabilidadSiCorresponde(p, valores) {
+function copiarUnidad1ATodas() {
+  for (let i = 2; i <= unidadesTrazN; i++) {
+    CAMPOS_COPIABLES_TRAZ.forEach(campo => {
+      const origen = document.getElementById(idU(campo, 1));
+      const destino = document.getElementById(idU(campo, i));
+      if (origen && destino && origen.value) destino.value = origen.value;
+    });
+  }
+  verificarTodasLasUnidades();
+  mostrarToast('Datos del artículo 1 copiados a los demás (los N° no se copian)', 'ok');
+}
+
+/*******************************************************
+ * VERIFICACIÓN EN VIVO POR UNIDAD
+ * Devuelve por unidad { nivelEntrega, txtEntrega, nivelRecambio, txtRecambio }
+ * nivel: 'ok' (verde) | 'warn' (ámbar, deja guardar) | 'error' (rojo, bloquea)
+ *******************************************************/
+function evaluarUnidades() {
+  const cat = filaEnEdicion ? filaEnEdicion.categoriaTrazabilidad : '';
+  const res = [];
+  const cuentaEnt = {}, cuentaRec = {};
+  for (let i = 1; i <= unidadesTrazN; i++) {
+    const e = normalizarNumero(valU('entrega', i)); if (e) cuentaEnt[e] = (cuentaEnt[e] || 0) + 1;
+    const r = normalizarNumero(valU('recambio', i)); if (r && r !== 'NA') cuentaRec[r] = (cuentaRec[r] || 0) + 1;
+  }
+  const diamNota = filaEnEdicion ? diametroDesdeTexto(filaEnEdicion.articulo) : '';
+
+  for (let i = 1; i <= unidadesTrazN; i++) {
+    const out = { nivelEntrega: 'ok', txtEntrega: '', nivelRecambio: 'ok', txtRecambio: '', mataNuevo: false, mataReg: null };
+    const ent = valU('entrega', i), rec = valU('recambio', i);
+    const nEnt = normalizarNumero(ent), nRec = normalizarNumero(rec);
+
+    // --- N° que se entrega
+    if (nEnt && cuentaEnt[nEnt] > 1) {
+      out.nivelEntrega = 'error'; out.txtEntrega = 'Este N° está repetido en otro artículo de esta nota.';
+    } else if (nEnt && cat === 'MANGUEROTE') {
+      const m = buscarMangueroteCache(ent);
+      if (!m) { out.nivelEntrega = 'warn'; out.txtEntrega = 'No está en el registro: se da de alta como manguerote ' + (diamNota || '') + ' nuevo.'; }
+      else if (diamNota && m.diametro && m.diametro !== diamNota) { out.nivelEntrega = 'error'; out.txtEntrega = 'Registrado como ' + m.diametro + ' y la nota pide ' + diamNota + '.'; }
+      else if (m.estado === 'ENTREGADO' && String(m.np) !== String(filaEnEdicion.np)) { out.nivelEntrega = 'error'; out.txtEntrega = 'Ya figura ENTREGADO en NP ' + m.np + ' (' + (m.destino || 's/d') + '). Si se devolvió, corregí su estado en la pestaña Manguerotes.'; }
+      else if (m.estado === 'BAJA') { out.nivelEntrega = 'error'; out.txtEntrega = 'Este manguerote está dado de BAJA.'; }
+      else { out.txtEntrega = 'Registrado: ' + (m.diametro || '') + ', ' + m.estado + ', cert. ' + (m.nCertificado || 's/d') + '.'; }
+    } else if (nEnt && cat === 'MATAFUEGO') {
+      out.mataReg = buscarMatafuegoCache(ent);
+      out.mataNuevo = !out.mataReg;
+    } else if (nEnt && esCategoriaPerno(cat)) {
+      const tipo = tipoPernoDesdeTexto(filaEnEdicion.articulo, cat);
+      const pr = buscarPernoCache(tipo, ent);
+      if (!pr) { out.nivelEntrega = 'warn'; out.txtEntrega = 'No está en el registro: se da de alta como ' + tipo + ' nuevo.'; }
+      else if (pr.estado === 'BAJA') { out.nivelEntrega = 'error'; out.txtEntrega = 'Este elemento está dado de BAJA.'; }
+      else if (pr.estado === 'COLOCADO' && Number(pr.filaNota) !== Number(filaEnEdicion.fila)) {
+        out.nivelEntrega = 'error'; out.txtEntrega = 'Ya figura COLOCADO en ' + (pr.unidad || 's/d') + ' (NP ' + (pr.np || 's/d') + '). Si se retiró, corregí su estado en la pestaña Pernos.';
+      } else { out.txtEntrega = 'Registrado: ' + (pr.material || 's/material') + ', ' + pr.estado + ', cert. ' + (pr.nCertificado || 's/d') + '.'; }
+    }
+
+    // --- N° que se retira / recambia
+    if (cat === 'MATAFUEGO' || cat === 'MANGUEROTE' || esCategoriaPerno(cat)) {
+      if (!rec) {
+        out.txtRecambio = cat === 'MANGUEROTE' ? 'Si no se retira ningún manguerote, escribí NA'
+          : esCategoriaPerno(cat) ? 'Si no se retira ninguno (o el retirado no tenía N°), escribí NA' : '';
+      } else if (nRec === 'NA') {
+        out.txtRecambio = 'Sin recambio';
+      } else if (nRec === nEnt) {
+        out.nivelRecambio = 'error'; out.txtRecambio = 'No puede ser el mismo N° que el que se entrega.';
+      } else if (cuentaRec[nRec] > 1) {
+        out.nivelRecambio = 'error'; out.txtRecambio = 'Este N° viejo está repetido en otro artículo.';
+      } else {
+        const reg = cat === 'MATAFUEGO' ? buscarMatafuegoCache(rec)
+          : cat === 'MANGUEROTE' ? buscarMangueroteCache(rec)
+          : buscarPernoCache(tipoPernoDesdeTexto(filaEnEdicion.articulo, cat), rec);
+        if (reg) {
+          out.txtRecambio = cat === 'MATAFUEGO'
+            ? 'Registrado (patente actual: ' + (reg.patente || 'sin asignar') + '). Al guardar queda desasignado y retirado.'
+            : 'Registrado (' + (reg.destino || reg.unidad || 'sin unidad') + '). Al guardar queda RETIRADO.';
+        } else {
+          out.nivelRecambio = 'warn'; out.txtRecambio = 'No está en el registro: queda en Trazabilidad, pero no se actualiza el maestro.';
+        }
+      }
+    }
+    res.push(out);
+  }
+  return res;
+}
+
+function pintarHint(id, nivel, texto) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = texto;
+  el.style.color = !texto ? '' : (nivel === 'error' ? 'var(--red-text)' : nivel === 'warn' ? 'var(--amber-text)' : 'var(--green-text)');
+  el.style.fontWeight = nivel === 'error' ? '600' : '';
+}
+
+function verificarTodasLasUnidades() {
+  const evals = evaluarUnidades();
+  evals.forEach((ev, idx) => {
+    const i = idx + 1;
+    pintarHint(idU('entregaInfo', i), ev.nivelEntrega, ev.txtEntrega);
+    pintarHint(idU('recambioInfo', i), ev.nivelRecambio, ev.txtRecambio);
+    const card = document.getElementById(idU('card', i));
+    if (card) card.classList.toggle('con-error', ev.nivelEntrega === 'error' || ev.nivelRecambio === 'error');
+
+    // Matafuego: registrado / alta nueva
+    const reg = document.getElementById(idU('mataReg', i));
+    const nuevo = document.getElementById(idU('mataNuevo', i));
+    if (reg && nuevo) {
+      reg.style.display = ev.mataReg ? 'flex' : 'none';
+      if (ev.mataReg) reg.innerHTML = `<i class="ti ti-circle-check"></i> Matafuego ya registrado: ${escapeHtml(ev.mataReg.capacidadKg || '—')} Kg, Tipo ${escapeHtml(ev.mataReg.tipo || '—')}`;
+      nuevo.style.display = ev.mataNuevo ? 'block' : 'none';
+    }
+    // Perno registrado: completa certificado y fecha de ensayo si están vacíos
+    if (filaEnEdicion && esCategoriaPerno(filaEnEdicion.categoriaTrazabilidad)) {
+      const pr = buscarPernoCache(tipoPernoDesdeTexto(filaEnEdicion.articulo, filaEnEdicion.categoriaTrazabilidad), valU('entrega', i));
+      const cert = document.getElementById(idU('nCert', i)), fec = document.getElementById(idU('fechaCert', i));
+      if (pr && pr.nCertificado && cert && !cert.value.trim()) cert.value = pr.nCertificado;
+      if (pr && pr.fechaCert && fec && !fec.value) fec.value = isoDesdeDDMMYYYY(pr.fechaCert);
+    }
+    // Manguerote registrado: completa el certificado si está vacío
+    if (filaEnEdicion && filaEnEdicion.categoriaTrazabilidad === 'MANGUEROTE') {
+      const m = buscarMangueroteCache(valU('entrega', i));
+      const cert = document.getElementById(idU('nCert', i));
+      if (m && m.nCertificado && cert && !cert.value.trim()) cert.value = m.nCertificado;
+    }
+  });
+  return evals;
+}
+
+// Sugerencias del N° de manguerote: los EN STOCK del diámetro que pide la nota
+function poblarSugerenciasManguerote(p) {
+  const diam = diametroDesdeTexto(p.articulo);
+  document.getElementById('lstManguerotesStock').innerHTML = manguerotesCache
+    .filter(m => m.numeracion && m.estado === 'EN STOCK' && (!diam || m.diametro === diam))
+    .map(m => `<option value="${escapeHtml(m.numeracion)}">${escapeHtml(m.diametro)} · Cert. ${escapeHtml(m.nCertificado || 's/d')}</option>`).join('');
+  document.getElementById('lstResponsablesEntrega').innerHTML =
+    [...new Set(usuariosCache.filter(u => u.activo).map(u => u.nombre))].sort().map(n => `<option value="${escapeHtml(n)}">`).join('');
+}
+
+// Validación completa antes de guardar. Devuelve { ok, msg, focoId }
+function validarTrazabilidadUnidades() {
+  const cat = filaEnEdicion.categoriaTrazabilidad;
+  const campos = CAMPOS_UNIDAD_TRAZ[cat] || ['entrega'];
+  if (cat === 'MANGUEROTE' && !document.getElementById('tResponsableEntrega').value.trim()) {
+    return { ok: false, msg: 'Completá el Responsable de la entrega', focoId: 'tResponsableEntrega' };
+  }
+  for (let i = 1; i <= unidadesTrazN; i++) {
+    for (const campo of campos) {
+      if (!valU(campo, i)) return { ok: false, msg: 'Artículo ' + i + ': completá "' + labelCampoTraz(cat, campo) + '"', focoId: idU(campo, i) };
+    }
+  }
+  const evals = verificarTodasLasUnidades();
+  for (let i = 1; i <= evals.length; i++) {
+    const ev = evals[i - 1];
+    if (ev.nivelEntrega === 'error') return { ok: false, msg: 'Artículo ' + i + ': ' + ev.txtEntrega, focoId: idU('entrega', i) };
+    if (ev.nivelRecambio === 'error') return { ok: false, msg: 'Artículo ' + i + ': ' + ev.txtRecambio, focoId: idU('recambio', i) };
+    if (ev.mataNuevo) {
+      if (!valU('capacidad', i)) return { ok: false, msg: 'Artículo ' + i + ': matafuego nuevo, completá la Capacidad (Kg)', focoId: idU('capacidad', i) };
+      if (!valU('tipo', i)) return { ok: false, msg: 'Artículo ' + i + ': matafuego nuevo, completá el Tipo', focoId: idU('tipo', i) };
+      if (!document.getElementById(idU('confirmo', i)).checked) return { ok: false, msg: 'Artículo ' + i + ': matafuego nuevo, confirmá que verificaste el N°', focoId: idU('confirmo', i) };
+    }
+  }
+  return { ok: true };
+}
+
+function recolectarUnidadesTraz() {
+  const lista = [];
+  for (let i = 1; i <= unidadesTrazN; i++) {
+    lista.push({
+      item: i,
+      nElementoEntrega: valU('entrega', i),
+      nElementoRecambio: valU('recambio', i),
+      patenteDestino: valU('patente', i).toUpperCase(),
+      fechaVencRecarga: valU('vencRecarga', i),
+      fechaVencPrueba: valU('vencPrueba', i),
+      fechaCertificacion: valU('fechaCert', i),
+      nCertificado: valU('nCert', i),
+      capacidadKg: valU('capacidad', i),
+      tipoMatafuego: valU('tipo', i)
+    });
+  }
+  return lista;
+}
+
+async function guardarTrazabilidadSiCorresponde(p, comunes, unidades) {
   const cat = p.categoriaTrazabilidad;
-  if (!cat) return;
-
+  if (!cat || !unidades.length) return;
+  const fmt = (iso) => iso ? iso.split('-').reverse().join('/') : '';
+  const ahora = new Date();
+  const registrosLocales = unidades.map(u => ({
+    filaOrigen: p.fila, np: p.np, categoria: cat, articulo: p.articulo, destino: p.destino, fechaEntrega: fmt(comunes.fechaEntrega),
+    nElementoEntrega: u.nElementoEntrega, nElementoRecambio: u.nElementoRecambio, fechaVencRecarga: fmt(u.fechaVencRecarga),
+    fechaVencPrueba: fmt(u.fechaVencPrueba), fechaCertificacion: fmt(u.fechaCertificacion), nCertificado: u.nCertificado,
+    usuario: currentUser.usuario, responsableEntrega: comunes.responsableEntrega, item: u.item, patenteDestino: u.patenteDestino,
+    fechaCarga: ahora.toLocaleDateString('es-AR') + ' ' + ahora.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit', hour12: false }),
+    transferencia: comunes.transferencia || ''
+  }));
+  trazEnviando[p.fila] = { categoria: cat, registros: registrosLocales };
   try {
     const resp = await apiGet({
-      action: 'guardarTrazabilidad',
+      action: 'guardarTrazabilidadLote',
       filaOrigen: p.fila,
       np: p.np,
       categoria: cat,
       articulo: p.articulo,
       destino: p.destino,
-      fechaEntrega: valores.fechaEntrega, // fecha de cumplimiento = fecha de entrega
-      nElementoEntrega: valores.nElementoEntrega,
-      nElementoRecambio: valores.nElementoRecambio,
-      fechaVencRecarga: valores.fechaVencRecarga,
-      fechaVencPrueba: valores.fechaVencPrueba,
-      fechaCertificacion: valores.fechaCertificacion,
-      nCertificado: valores.nCertificado,
-      patenteDestino: valores.patenteDestino,
-      capacidadKg: valores.capacidadKg,
-      tipoMatafuego: valores.tipoMatafuego,
+      diametro: diametroDesdeTexto(p.articulo),
+      fechaEntrega: comunes.fechaEntrega, // fecha de cumplimiento = fecha de entrega
+      responsableEntrega: comunes.responsableEntrega,
+      items: JSON.stringify(unidades),
       usuario: currentUser.usuario,
       nombreUsuario: currentUser.nombre
     });
-    if (cat === 'MATAFUEGO' && resp.recambioNoRegistrado) {
-      mostrarToast('Trazabilidad guardada. Ojo: el matafuego que se recambia no está en el registro, no se pudo marcar como retirado', 'err');
+    const n = resp.unidades || unidades.length;
+    if (resp.recambiosNoRegistrados && resp.recambiosNoRegistrados.length) {
+      mostrarToast('Trazabilidad guardada (' + n + ' art.). Ojo: no están en el registro y no se marcaron como retirados: ' + resp.recambiosNoRegistrados.join(', '), 'err');
     } else {
-      mostrarToast('Trazabilidad guardada', 'ok');
+      mostrarToast('Trazabilidad guardada: ' + n + (n === 1 ? ' artículo' : ' artículos'), 'ok');
     }
-    cargarTrazabilidad(); // refresca el cache local con lo recién guardado
+    // La copia local queda al día al instante (no depende de la recarga completa, que tarda)
+    trazabilidadCache = trazabilidadCache.filter(t => !(Number(t.filaOrigen) === p.fila && t.categoria === cat)).concat(registrosLocales);
+    cargarTrazabilidad();
     if (cat === 'MATAFUEGO') cargarMatafuegos();
+    if (cat === 'MANGUEROTE') cargarManguerotes();
+    if (esCategoriaPerno(cat)) cargarPernos();
   } catch (err) {
     mostrarToast('El pedido se guardó, pero la trazabilidad no: ' + err.message, 'err');
+  } finally {
+    delete trazEnviando[p.fila];
   }
 }
 
@@ -1890,6 +2446,15 @@ async function cargarTablaTrazabilidad() {
   cont.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando…</div>';
   await cargarTrazabilidad();
   renderTrazabilidad();
+}
+
+// Para pernos/tuercas muestra el tipo real (la tuerca comparte categoría SUPERCHUPA con el perno)
+function nombreCategoriaRegistro(r) {
+  if (esCategoriaPerno(r.categoria)) {
+    const t = tipoPernoDesdeTexto(r.articulo, r.categoria);
+    return t.charAt(0) + t.slice(1).toLowerCase();
+  }
+  return NOMBRE_CATEGORIA_TRAZ[r.categoria] || r.categoria;
 }
 
 function renderTrazabilidad() {
@@ -1904,8 +2469,10 @@ function renderTrazabilidad() {
 
   const filas = registros.map(r => `
     <tr>
-      <td class="nowrap"><span class="pill p-otro">${escapeHtml(NOMBRE_CATEGORIA_TRAZ[r.categoria] || r.categoria)}</span></td>
+      <td class="nowrap"><span class="pill p-otro">${escapeHtml(nombreCategoriaRegistro(r))}</span></td>
       <td class="nowrap">${escapeHtml(String(r.np))}</td>
+      <td class="nowrap">${escapeHtml(String(r.transferencia || '—'))}</td>
+      <td class="nowrap" style="text-align:center">${escapeHtml(String(r.item || 1))}</td>
       <td style="white-space:normal;max-width:260px">${escapeHtml(r.articulo || '')}</td>
       <td class="nowrap">${escapeHtml(r.destino || '—')}</td>
       <td class="nowrap">${escapeHtml(r.nElementoEntrega || '—')}</td>
@@ -1915,6 +2482,7 @@ function renderTrazabilidad() {
       <td class="nowrap">${escapeHtml(r.fechaVencPrueba || '—')}</td>
       <td class="nowrap">${escapeHtml(r.fechaCertificacion || '—')}</td>
       <td class="nowrap">${escapeHtml(r.nCertificado || '—')}</td>
+      <td class="nowrap">${escapeHtml(r.responsableEntrega || '—')}</td>
       <td class="nowrap">${escapeHtml(r.usuario || '—')}</td>
     </tr>
   `).join('');
@@ -1924,9 +2492,9 @@ function renderTrazabilidad() {
       <div class="twrap" style="display:block">
         <table>
           <thead><tr>
-            <th>Categoría</th><th>N° NP</th><th>Artículo</th><th>Destino</th>
+            <th>Categoría</th><th>N° NP</th><th>N° Transferencia</th><th>Ítem</th><th>Artículo</th><th>Destino</th>
             <th>N° Entrega</th><th>N° Recambio</th><th>F. Entrega</th>
-            <th>F. Venc. Recarga</th><th>F. Venc. Prueba</th><th>F. Certificación</th><th>N° Certificado</th><th>Usuario</th>
+            <th>F. Venc. Recarga</th><th>F. Venc. Prueba</th><th>F. Certificación</th><th>N° Certificado</th><th>Resp. entrega</th><th>Usuario</th>
           </tr></thead>
           <tbody>${filas}</tbody>
         </table>
@@ -1938,10 +2506,10 @@ function renderTrazabilidad() {
 function exportarTrazabilidadExcel() {
   if (!trazabilidadCache.length) { mostrarToast('No hay datos para exportar', 'err'); return; }
   const filas = trazabilidadCache.map(r => ({
-    'Categoría': NOMBRE_CATEGORIA_TRAZ[r.categoria] || r.categoria, 'N° NP': r.np, 'Artículo': r.articulo, 'Destino': r.destino,
+    'Categoría': nombreCategoriaRegistro(r), 'N° NP': r.np, 'N° Transferencia': r.transferencia, 'Ítem': r.item || 1, 'Artículo': r.articulo, 'Destino': r.destino,
     'N° Elemento Entrega': r.nElementoEntrega, 'N° Elemento Recambio': r.nElementoRecambio, 'Fecha Entrega': r.fechaEntrega,
     'Fecha Venc. Recarga': r.fechaVencRecarga, 'Fecha Venc. Prueba': r.fechaVencPrueba,
-    'Fecha Certificación': r.fechaCertificacion, 'N° Certificado': r.nCertificado, 'Usuario': r.usuario, 'Fecha de carga': r.fechaCarga
+    'Fecha Certificación': r.fechaCertificacion, 'N° Certificado': r.nCertificado, 'Responsable de la entrega': r.responsableEntrega, 'Usuario': r.usuario, 'Fecha de carga': r.fechaCarga
   }));
   const ws = XLSX.utils.json_to_sheet(filas);
   const wb = XLSX.utils.book_new();
@@ -2020,6 +2588,7 @@ function renderMatafuegos() {
       <td class="nowrap">${escapeHtml(m.vencPH || '—')}</td>
       <td class="nowrap">${pillEstadoMata('Carga', m.estadoCarga)}<div class="subline" style="margin-top:4px">${pillEstadoMata('PH', m.estadoPH)}</div></td>
       <td class="nowrap">${escapeHtml(m.patente || '—')}</td>
+      <td class="nowrap">${escapeHtml(String(m.transferencia || '—'))}</td>
       <td class="mata-obs">${escapeHtml(m.observaciones || '—')}</td>
       <td class="nowrap"><button class="btn-edit" onclick="abrirModalMatafuego(${m.fila})"><i class="ti ti-edit"></i> Editar</button></td>
     </tr>
@@ -2031,7 +2600,7 @@ function renderMatafuegos() {
         <table>
           <thead><tr>
             <th>N° Matafuego</th><th>Capacidad Kg</th><th>Tipo</th><th>Venc. Carga</th><th>Venc. PH</th>
-            <th>Estado (Carga / PH)</th><th>Patente</th><th>Observaciones</th><th></th>
+            <th>Estado (Carga / PH)</th><th>Patente</th><th>N° Transferencia</th><th>Observaciones</th><th></th>
           </tr></thead>
           <tbody>${filas}</tbody>
         </table>
@@ -2046,7 +2615,7 @@ function exportarMatafuegosExcel() {
   const filas = registros.map(m => ({
     'N° Matafuego': m.nMatafuego, 'Capacidad Kg': m.capacidadKg, 'Tipo': m.tipo,
     'Venc. Carga': m.vencCarga, 'Venc. PH': m.vencPH, 'Estado Carga': m.estadoCarga, 'Estado PH': m.estadoPH,
-    'Patente': m.patente, 'Observaciones': m.observaciones
+    'Patente': m.patente, 'N° Transferencia': m.transferencia, 'Observaciones': m.observaciones
   }));
   const ws = XLSX.utils.json_to_sheet(filas);
   const wb = XLSX.utils.book_new();
@@ -2139,6 +2708,372 @@ document.getElementById('mataModalOverlay').addEventListener('click', (ev) => {
   if (ev.target.id === 'mataModalOverlay') cerrarModalMatafuego();
 });
 
+/*******************************************************
+ * TAB PERNOS
+ *******************************************************/
+const ESTILO_ESTADO_PERNO = { 'COLOCADO': 'p-cumplido', 'EN STOCK': 'p-pendiente', 'RETIRADO': 'p-proceso', 'BAJA': 'p-rechazado' };
+
+async function cargarPernos() {
+  try {
+    const data = await apiGet({ action: 'getPernos' });
+    pernosCache = data.pernos || [];
+  } catch (err) {
+    console.error('No se pudo cargar el registro de pernos:', err); // ej: todavía no se corrió setupPernos()
+  }
+}
+async function cargarTablaPernos() {
+  document.getElementById('pernosContent').innerHTML = '<div class="loading"><div class="spinner"></div>Cargando…</div>';
+  await cargarPernos();
+  renderPernos();
+}
+
+function pernosFiltrados() {
+  const numero = normalizarNumero(document.getElementById('filPernoNumero').value);
+  const tipo = document.getElementById('filPernoTipo').value;
+  const material = document.getElementById('filPernoMaterial').value;
+  const estado = document.getElementById('filPernoEstado').value;
+  const unidad = document.getElementById('filPernoUnidad').value.trim().toLowerCase();
+  const lote = document.getElementById('filPernoLote').value.trim().toLowerCase();
+  return pernosCache.filter(x => {
+    if (lote && !String(x.lote || '').toLowerCase().includes(lote)) return false;
+    if (numero && !normalizarNumero(x.numero).includes(numero)) return false;
+    if (tipo && x.tipo !== tipo) return false;
+    if (material === '__SIN' ? !!x.material : (material && x.material !== material)) return false;
+    if (estado && x.estado !== estado) return false;
+    if (unidad && !String(x.unidad || '').toLowerCase().includes(unidad)) return false;
+    return true;
+  });
+}
+
+function renderPernos() {
+  const regs = pernosFiltrados();
+  const c = fn => regs.filter(fn).length;
+  const colocados = x => x.estado === 'COLOCADO';
+  const inoxColocados = c(x => colocados(x) && x.material === 'INOX');
+  const sinCert = c(x => colocados(x) && !x.nCertificado);
+  const sinMaterial = c(x => colocados(x) && !x.material);
+  const unidades = new Set(regs.filter(colocados).map(x => x.unidad).filter(Boolean)).size;
+  const kpi = (lbl, val, clase) => `<div class="kpi ${clase || ''}"><div class="lbl">${escapeHtml(lbl)}</div><div class="val">${val}</div></div>`;
+  document.getElementById('kpisPernos').innerHTML = `
+    <div class="kpis" style="grid-template-columns:repeat(4,1fr)">
+      ${kpi('Total (con filtros)', regs.length)}
+      ${kpi('Colocados', c(colocados), 'ok')}
+      ${kpi('En stock', c(x => x.estado === 'EN STOCK'))}
+      ${kpi('Unidades con elementos', unidades)}
+    </div>
+    <div class="kpis" style="grid-template-columns:repeat(4,1fr)">
+      ${kpi('Colocados SAE 4140', c(x => colocados(x) && x.material === 'SAE 4140'), 'ok')}
+      ${kpi('Colocados INOX', inoxColocados, inoxColocados ? 'danger' : 'ok')}
+      ${kpi('Colocados sin certificado', sinCert, sinCert ? 'danger' : 'ok')}
+      ${kpi('Colocados sin material', sinMaterial, sinMaterial ? 'warn' : 'ok')}
+    </div>`;
+
+  const cont = document.getElementById('pernosContent');
+  if (!regs.length) {
+    cont.innerHTML = '<div class="tbl-card"><div class="empty">No hay elementos que coincidan con los filtros' +
+      (pernosCache.length ? '' : ' — si la hoja "Pernos" todavía no existe, ejecutá setupPernos() en Apps Script') + '</div></div>';
+    return;
+  }
+  const orden = { 'COLOCADO': 0, 'EN STOCK': 1, 'RETIRADO': 2, 'BAJA': 3 };
+  const filas = regs.slice().sort((a, b) => String(a.unidad).localeCompare(String(b.unidad)) || (orden[a.estado] - orden[b.estado]) ||
+      a.tipo.localeCompare(b.tipo) || normalizarNumero(a.numero).localeCompare(normalizarNumero(b.numero), 'es', { numeric: true }))
+    .map(x => `
+    <tr>
+      <td class="nowrap"><strong>${escapeHtml(x.numero)}</strong></td>
+      <td class="nowrap">${escapeHtml(x.tipo)}</td>
+      <td class="nowrap">${x.material === 'INOX' ? '<span style="color:var(--red-text);font-weight:700">INOX</span>' : escapeHtml(x.material || '—')}</td>
+      <td class="nowrap"><span class="pill ${ESTILO_ESTADO_PERNO[x.estado] || 'p-otro'}">${escapeHtml(x.estado)}</span></td>
+      <td class="nowrap">${escapeHtml(x.unidad || '—')}</td>
+      <td class="nowrap">${escapeHtml(x.fechaCert || '—')}</td>
+      <td class="nowrap">${x.nCertificado ? escapeHtml(x.nCertificado) : '<span style="color:var(--red-text);font-weight:600">FALTA</span>'}</td>
+      <td class="nowrap">${escapeHtml(String(x.np || '—'))}</td>
+      <td class="nowrap">${escapeHtml(String(x.transferencia || '—'))}</td>
+      <td class="nowrap">${escapeHtml(x.fechaColocacion || '—')}</td>
+      <td class="nowrap">${escapeHtml(x.nRetirado || '—')}</td>
+      <td class="nowrap">${escapeHtml(x.lote || '—')}</td>
+      <td class="nowrap">${escapeHtml(x.oc || '—')}</td>
+      <td class="nowrap">${escapeHtml(x.nSra || '—')}</td>
+      <td class="nowrap">${escapeHtml(x.responsable || '—')}</td>
+      <td style="white-space:pre-line;max-width:240px">${escapeHtml(x.observaciones || '—')}</td>
+      <td class="nowrap"><button class="btn-edit" onclick="abrirModalPerno(${x.fila})"><i class="ti ti-edit"></i> Editar</button></td>
+    </tr>`).join('');
+  cont.innerHTML = `
+    <div class="tbl-card"><div class="twrap" style="display:block"><table>
+      <thead><tr><th>N°</th><th>Tipo</th><th>Material</th><th>Estado</th><th>Unidad</th><th>F. cert./ensayo</th><th>N° certificado</th>
+        <th>N° NP</th><th>N° Transferencia</th><th>F. entrega</th><th>Reemplazó a</th><th>Lote</th><th>OC</th><th>N° SRA</th><th>Responsable</th><th>Observaciones</th><th></th></tr></thead>
+      <tbody>${filas}</tbody>
+    </table></div></div>`;
+}
+
+function exportarPernosExcel() {
+  const regs = pernosFiltrados();
+  if (!regs.length) { mostrarToast('No hay datos para exportar', 'err'); return; }
+  const ws = XLSX.utils.json_to_sheet(regs.map(x => ({
+    'N° elemento': x.numero, 'Tipo': x.tipo, 'Material': x.material, 'Código': x.codigo, 'Artículo': x.articulo,
+    'Estado': x.estado, 'Unidad': x.unidad, 'Fecha cert./ensayo': x.fechaCert, 'N° certificado': x.nCertificado,
+    'N° NP': x.np, 'N° Transferencia': x.transferencia, 'Fecha entrega': x.fechaColocacion, 'Reemplazó a N°': x.nRetirado, 'Lote': x.lote, 'OC': x.oc, 'N° SRA (salida depósito)': x.nSra, 'Responsable': x.responsable, 'Fecha registro': x.fechaRegistro, 'Observaciones': x.observaciones
+  })));
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Pernos');
+  XLSX.writeFile(wb, 'pernos_' + new Date().toISOString().slice(0, 10) + '.xlsx');
+}
+
+function abrirModalPerno(fila) {
+  const x = pernosCache.find(p => p.fila === fila);
+  if (!x) return;
+  pernoEnEdicion = x;
+  document.getElementById('pernoModalTitulo').innerHTML = '<i class="ti ti-tool"></i> Editar elemento';
+  document.getElementById('pernoModalSub').textContent = (x.articulo || x.tipo) + (x.np ? ' · NP ' + x.np : '');
+  const num = document.getElementById('pernoNumero'); num.value = x.numero; num.disabled = true;
+  const tipo = document.getElementById('pernoTipo'); tipo.value = x.tipo; tipo.disabled = true;
+  document.getElementById('pernoMaterial').value = x.material || '';
+  document.getElementById('pernoFechaCert').value = isoDesdeDDMMYYYY(x.fechaCert);
+  document.getElementById('pernoCertificado').value = x.nCertificado || '';
+  document.getElementById('pernoEstado').value = x.estado;
+  document.getElementById('pernoCampoEstado').style.display = 'block';
+  document.getElementById('pernoFilaUnidad').style.display = 'grid';
+  document.getElementById('pernoUnidad').value = x.unidad || '';
+  document.getElementById('pernoObservaciones').value = x.observaciones || '';
+  setCamposExtraPerno(x);
+  document.getElementById('pernoModalOverlay').classList.add('open');
+}
+
+function abrirModalPernoNuevo() {
+  pernoEnEdicion = null;
+  document.getElementById('pernoModalTitulo').innerHTML = '<i class="ti ti-tool"></i> Nuevo elemento';
+  document.getElementById('pernoModalSub').textContent = 'Queda EN STOCK hasta que se entregue con una nota de pedido';
+  const num = document.getElementById('pernoNumero'); num.value = ''; num.disabled = false;
+  const tipo = document.getElementById('pernoTipo'); tipo.value = 'PERNO SUPERCHUPA'; tipo.disabled = false;
+  document.getElementById('pernoMaterial').value = 'SAE 4140';
+  document.getElementById('pernoFechaCert').value = '';
+  document.getElementById('pernoCertificado').value = '';
+  document.getElementById('pernoCampoEstado').style.display = 'none';
+  document.getElementById('pernoFilaUnidad').style.display = 'none';
+  document.getElementById('pernoObservaciones').value = '';
+  setCamposExtraPerno({});
+  document.getElementById('pernoModalOverlay').classList.add('open');
+}
+
+function setCamposExtraPerno(x) {
+  document.getElementById('pernoLote').value = x.lote || '';
+  document.getElementById('pernoOc').value = x.oc || '';
+  document.getElementById('pernoSra').value = x.nSra || '';
+  document.getElementById('pernoResponsable').value = x.responsable || '';
+  document.getElementById('pernoFechaRegistro').value = isoDesdeDDMMYYYY(x.fechaRegistro || '');
+  document.getElementById('pernoNp').value = x.np || '';
+  document.getElementById('pernoCampoNp').style.display = x.fila ? 'block' : 'none'; // solo al editar
+}
+const extraPernoParams = (v) => ({ lote: v('pernoLote'), oc: v('pernoOc'), nSra: v('pernoSra'), responsable: v('pernoResponsable'), fechaRegistro: v('pernoFechaRegistro') });
+
+function cerrarModalPerno() {
+  document.getElementById('pernoModalOverlay').classList.remove('open');
+  pernoEnEdicion = null;
+}
+
+async function guardarPerno() {
+  const v = id => document.getElementById(id).value.trim();
+  if (!pernoEnEdicion && !v('pernoNumero')) { mostrarToast('Ingresá el N° de elemento', 'err'); return; }
+  if (pernoEnEdicion && v('pernoEstado') === 'COLOCADO' && !v('pernoUnidad')) { mostrarToast('Para dejarlo COLOCADO indicá la unidad', 'err'); return; }
+  const btn = document.getElementById('btnGuardarPerno');
+  btn.disabled = true; btn.textContent = 'Guardando…';
+  try {
+    if (pernoEnEdicion) {
+      await apiGet({ action: 'actualizarPerno', fila: pernoEnEdicion.fila, material: v('pernoMaterial'), fechaCert: v('pernoFechaCert'),
+        nCertificado: v('pernoCertificado'), estado: v('pernoEstado'), unidad: v('pernoUnidad'), observaciones: v('pernoObservaciones'), np: v('pernoNp'), ...extraPernoParams(v) });
+      mostrarToast('Elemento actualizado', 'ok');
+    } else {
+      await apiGet({ action: 'crearPerno', numero: v('pernoNumero'), tipo: v('pernoTipo'), material: v('pernoMaterial'),
+        fechaCert: v('pernoFechaCert'), nCertificado: v('pernoCertificado'), observaciones: v('pernoObservaciones'), ...extraPernoParams(v) });
+      mostrarToast('Elemento creado', 'ok');
+    }
+    cerrarModalPerno();
+    await cargarPernos();
+    renderPernos();
+  } catch (err) {
+    mostrarToast('Error al guardar: ' + err.message, 'err');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="ti ti-device-floppy"></i> Guardar';
+  }
+}
+document.getElementById('pernoModalOverlay').addEventListener('click', (ev) => {
+  if (ev.target.id === 'pernoModalOverlay') cerrarModalPerno();
+});
+
+/*******************************************************
+ * TAB MANGUEROTES
+ *******************************************************/
+const ESTILO_ESTADO_MANG = { 'EN STOCK': 'p-pendiente', 'ENTREGADO': 'p-cumplido', 'RETIRADO': 'p-proceso', 'BAJA': 'p-rechazado' };
+
+async function cargarManguerotes() {
+  try {
+    const data = await apiGet({ action: 'getManguerotes' });
+    manguerotesCache = data.manguerotes;
+  } catch (err) {
+    console.error('No se pudo cargar el registro de manguerotes:', err);
+  }
+}
+
+async function cargarTablaManguerotes() {
+  document.getElementById('manguerotesContent').innerHTML = '<div class="loading"><div class="spinner"></div>Cargando…</div>';
+  await cargarManguerotes();
+  renderManguerotes();
+}
+
+function manguerotesFiltrados() {
+  const numero = normalizarNumero(document.getElementById('filMangNumero').value);
+  const diametro = document.getElementById('filMangDiametro').value;
+  const estado = document.getElementById('filMangEstado').value;
+  const destino = document.getElementById('filMangDestino').value.trim().toLowerCase();
+  return manguerotesCache.filter(m => {
+    if (numero && !normalizarNumero(m.numeracion).includes(numero)) return false;
+    if (diametro && m.diametro !== diametro) return false;
+    if (estado && m.estado !== estado) return false;
+    if (destino && !String(m.destino || '').toLowerCase().includes(destino)) return false;
+    return true;
+  });
+}
+
+function renderManguerotes() {
+  const registros = manguerotesFiltrados();
+  const contar = (fn) => registros.filter(fn).length;
+  const sinNumerar = contar(m => !m.numeracion);
+
+  const kpi = (lbl, val, clase) => `<div class="kpi ${clase || ''}"><div class="lbl">${escapeHtml(lbl)}</div><div class="val">${val}</div></div>`;
+  document.getElementById('kpisManguerotes').innerHTML = `
+    <div class="kpis" style="grid-template-columns:repeat(4,1fr)">
+      ${kpi('Total (con filtros)', registros.length)}
+      ${kpi('En stock', contar(m => m.estado === 'EN STOCK'), '')}
+      ${kpi('Entregados', contar(m => m.estado === 'ENTREGADO'), 'ok')}
+      ${kpi('Retirados / Baja', contar(m => m.estado === 'RETIRADO' || m.estado === 'BAJA'), 'warn')}
+    </div>
+    <div class="kpis" style="grid-template-columns:repeat(4,1fr)">
+      ${kpi('3" en stock', contar(m => m.diametro === '3"' && m.estado === 'EN STOCK'))}
+      ${kpi('4" en stock', contar(m => m.diametro === '4"' && m.estado === 'EN STOCK'))}
+      ${kpi('Sin certificado', contar(m => !m.nCertificado), contar(m => !m.nCertificado) ? 'danger' : 'ok')}
+      ${kpi('Sin numerar', sinNumerar, sinNumerar ? 'warn' : 'ok')}
+    </div>`;
+
+  const cont = document.getElementById('manguerotesContent');
+  if (!registros.length) {
+    cont.innerHTML = '<div class="tbl-card"><div class="empty">No hay manguerotes que coincidan con los filtros</div></div>';
+    return;
+  }
+  const filas = registros.map(m => `
+    <tr>
+      <td class="nowrap"><strong>${m.numeracion ? escapeHtml(m.numeracion) : '<span style="color:var(--amber-text)">SIN NUMERAR</span>'}</strong></td>
+      <td class="nowrap">${escapeHtml(m.diametro || '—')}</td>
+      <td class="nowrap"><span class="pill ${ESTILO_ESTADO_MANG[m.estado] || 'p-otro'}">${escapeHtml(m.estado)}</span></td>
+      <td class="nowrap">${m.nCertificado ? escapeHtml(m.nCertificado) : '<span style="color:var(--red-text);font-weight:600">FALTA</span>'}</td>
+      <td class="nowrap">${escapeHtml(m.destino || '—')}</td>
+      <td class="nowrap">${escapeHtml(String(m.np || '—'))}</td>
+      <td class="nowrap">${escapeHtml(String(m.transferencia || '—'))}</td>
+      <td class="nowrap">${escapeHtml(m.fechaEntrega || '—')}</td>
+      <td class="nowrap">${escapeHtml(m.responsableEntrega || '—')}</td>
+      <td class="nowrap">${escapeHtml(m.nViejo || '—')}</td>
+      <td style="white-space:pre-line;max-width:260px">${escapeHtml(m.observaciones || '—')}</td>
+      <td class="nowrap"><button class="btn-edit" onclick="abrirModalManguerote(${m.fila})"><i class="ti ti-edit"></i> Editar</button></td>
+    </tr>`).join('');
+  cont.innerHTML = `
+    <div class="tbl-card">
+      <div class="twrap" style="display:block">
+        <table>
+          <thead><tr>
+            <th>Numeración</th><th>Diám.</th><th>Estado</th><th>N° Certificado</th><th>Destino / unidad</th>
+            <th>N° NP</th><th>N° Transferencia</th><th>F. Entrega</th><th>Resp. entrega</th><th>N° viejo</th><th>Observaciones</th><th></th>
+          </tr></thead>
+          <tbody>${filas}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+function exportarManguerotesExcel() {
+  const registros = manguerotesFiltrados();
+  if (!registros.length) { mostrarToast('No hay datos para exportar', 'err'); return; }
+  const filas = registros.map(m => ({
+    'Código': m.codigo, 'Detalle': m.detalle, 'Numeración': m.numeracion, 'Diámetro': m.diametro, 'Estado': m.estado,
+    'N° Certificado': m.nCertificado, 'Destino / unidad': m.destino, 'N° NP entrega': m.np, 'N° Transferencia': m.transferencia, 'Fecha entrega': m.fechaEntrega,
+    'Responsable de la entrega': m.responsableEntrega, 'N° manguerote viejo': m.nViejo, 'Observaciones': m.observaciones
+  }));
+  const ws = XLSX.utils.json_to_sheet(filas);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Manguerotes');
+  XLSX.writeFile(wb, 'manguerotes_' + new Date().toISOString().slice(0,10) + '.xlsx');
+}
+
+function abrirModalManguerote(fila) {
+  const m = manguerotesCache.find(x => x.fila === fila);
+  if (!m) return;
+  mangueroteEnEdicion = m;
+  document.getElementById('mangModalTitulo').innerHTML = '<i class="ti ti-circle-dashed"></i> Editar manguerote';
+  document.getElementById('mangModalSub').textContent = (m.detalle || '') + (m.np ? ' · Entregado en NP ' + m.np : '');
+  const num = document.getElementById('mangNumeracion');
+  num.value = m.numeracion || '';
+  num.disabled = !!m.numeracion; // solo se puede asignar si estaba sin numerar
+  document.getElementById('mangHintNumeracion').textContent = m.numeracion ? 'La numeración asignada no se cambia desde el tablero' : 'Asigná el N° grabado en el manguerote';
+  const diam = document.getElementById('mangDiametro');
+  diam.value = m.diametro || '3"';
+  diam.disabled = true;
+  document.getElementById('mangCertificado').value = m.nCertificado || '';
+  document.getElementById('mangEstado').value = m.estado || 'EN STOCK';
+  document.getElementById('mangCampoEstado').style.display = 'block';
+  document.getElementById('mangObservaciones').value = m.observaciones || '';
+  document.getElementById('mangModalOverlay').classList.add('open');
+}
+
+function abrirModalMangueroteNuevo() {
+  mangueroteEnEdicion = null;
+  document.getElementById('mangModalTitulo').innerHTML = '<i class="ti ti-circle-dashed"></i> Nuevo manguerote';
+  document.getElementById('mangModalSub').textContent = 'Queda EN STOCK, con el código y detalle de catálogo del diámetro elegido';
+  const num = document.getElementById('mangNumeracion');
+  num.value = ''; num.disabled = false;
+  document.getElementById('mangHintNumeracion').textContent = 'N° grabado en el manguerote';
+  const diam = document.getElementById('mangDiametro');
+  diam.value = '3"'; diam.disabled = false;
+  document.getElementById('mangCertificado').value = '';
+  document.getElementById('mangCampoEstado').style.display = 'none';
+  document.getElementById('mangObservaciones').value = '';
+  document.getElementById('mangModalOverlay').classList.add('open');
+}
+
+function cerrarModalManguerote() {
+  document.getElementById('mangModalOverlay').classList.remove('open');
+  mangueroteEnEdicion = null;
+}
+
+async function guardarManguerote() {
+  const numeracion = document.getElementById('mangNumeracion').value.trim();
+  const nCertificado = document.getElementById('mangCertificado').value.trim();
+  const observaciones = document.getElementById('mangObservaciones').value.trim();
+  if (!mangueroteEnEdicion && !numeracion) { mostrarToast('Ingresá la numeración', 'err'); return; }
+
+  const btn = document.getElementById('btnGuardarManguerote');
+  btn.disabled = true; btn.textContent = 'Guardando…';
+  try {
+    if (mangueroteEnEdicion) {
+      await apiGet({ action: 'actualizarManguerote', fila: mangueroteEnEdicion.fila, numeracion, nCertificado,
+        estado: document.getElementById('mangEstado').value, observaciones });
+      mostrarToast('Manguerote actualizado', 'ok');
+    } else {
+      await apiGet({ action: 'crearManguerote', numeracion, diametro: document.getElementById('mangDiametro').value, nCertificado, observaciones });
+      mostrarToast('Manguerote creado', 'ok');
+    }
+    cerrarModalManguerote();
+    await cargarManguerotes();
+    renderManguerotes();
+  } catch (err) {
+    mostrarToast('Error al guardar: ' + err.message, 'err');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="ti ti-device-floppy"></i> Guardar';
+  }
+}
+
+document.getElementById('mangModalOverlay').addEventListener('click', (ev) => {
+  if (ev.target.id === 'mangModalOverlay') cerrarModalManguerote();
+});
+
 function cerrarModal() {
   document.getElementById('modalOverlay').classList.remove('open');
   filaEnEdicion = null;
@@ -2177,42 +3112,29 @@ async function guardarEdicion() {
     ordenCompraInput.value = 'NA';
   }
   if (estado === 'CUMPLIDO' && filaEnEdicion.categoriaTrazabilidad) {
-    const camposTraz = CAMPOS_OBLIGATORIOS_TRAZ[filaEnEdicion.categoriaTrazabilidad] || [];
-    for (const c of camposTraz) {
-      const input = document.getElementById(c.id);
-      if (!input.value.trim()) {
-        mostrarToast('Este artículo requiere trazabilidad: completá "' + c.label + '" antes de guardar', 'err');
-        input.focus();
-        return;
-      }
+    const v = validarTrazabilidadUnidades();
+    if (!v.ok) {
+      mostrarToast('Trazabilidad — ' + v.msg, 'err');
+      const foco = document.getElementById(v.focoId);
+      if (foco) { foco.scrollIntoView({ block: 'center' }); foco.focus(); }
+      return;
     }
-    if (filaEnEdicion.categoriaTrazabilidad === 'MATAFUEGO') {
-      const numero = document.getElementById('tNElementoEntrega').value.trim();
-      const recambio = document.getElementById('tNElementoRecambio').value.trim();
-      if (numero.toLowerCase() === recambio.toLowerCase()) {
-        mostrarToast('El N° de matafuego que recambia no puede ser el mismo que el que entrega', 'err');
-        document.getElementById('tNElementoRecambio').focus();
-        return;
-      }
-      const yaRegistrado = matafuegosCache.find(m => m.nMatafuego.trim().toLowerCase() === numero.toLowerCase());
-      if (!yaRegistrado) {
-        if (!document.getElementById('tCapacidadKg').value.trim()) {
-          mostrarToast('Es un matafuego nuevo: completá la Capacidad (Kg) antes de guardar', 'err');
-          document.getElementById('tCapacidadKg').focus();
-          return;
-        }
-        if (!document.getElementById('tTipoMatafuego').value.trim()) {
-          mostrarToast('Es un matafuego nuevo: completá el Tipo antes de guardar', 'err');
-          document.getElementById('tTipoMatafuego').focus();
-          return;
-        }
-        if (!document.getElementById('tConfirmoNumero').checked) {
-          mostrarToast('Es un matafuego nuevo: confirmá que verificaste el N° antes de guardar', 'err');
-          document.getElementById('tConfirmoNumero').focus();
-          return;
-        }
-      }
+  }
+
+  // Otros artículos de la NP tildados para cerrar con la misma transferencia
+  const npElegidos = seleccionNp();
+  const npDatos = { transferencia: transferencia, fecha: document.getElementById('mFechaCumplimiento').value,
+    responsable: document.getElementById('mResponsable').value };
+  if (npElegidos.length) {
+    if (!npDatos.fecha) {
+      mostrarToast('Para cerrar los otros artículos tildados, cargá la Fecha de cumplimiento', 'err');
+      document.getElementById('mFechaCumplimiento').focus();
+      return;
     }
+    if (!confirm('Además de esta línea, se van a cerrar como CUMPLIDO ' + npElegidos.length +
+        (npElegidos.length === 1 ? ' artículo más' : ' artículos más') + ' de la NP ' + filaEnEdicion.np +
+        ' con la transferencia ' + transferencia + ':\n\n' + npElegidos.map(x => '• ' + x.articulo).join('\n') +
+        '\n\nAceptar = confirmar · Cancelar = volver')) return;
   }
 
   const btn = document.getElementById('btnGuardarModal');
@@ -2243,22 +3165,17 @@ async function guardarEdicion() {
     if (idx >= 0) pedidosCache[idx] = data.pedido;
 
     if (filaEnEdicion.categoriaTrazabilidad && estado === 'CUMPLIDO') {
-      const valoresTraz = {
+      const comunes = {
         fechaEntrega: document.getElementById('mFechaCumplimiento').value,
-        nElementoEntrega: document.getElementById('tNElementoEntrega').value.trim(),
-        nElementoRecambio: document.getElementById('tNElementoRecambio').value.trim(),
-        fechaVencRecarga: document.getElementById('tFechaVencRecarga').value,
-        fechaVencPrueba: document.getElementById('tFechaVencPrueba').value,
-        fechaCertificacion: document.getElementById('tFechaCertificacion').value,
-        nCertificado: document.getElementById('tNCertificado').value.trim(),
-        patenteDestino: document.getElementById('tPatenteDestino').value.trim().toUpperCase(),
-        capacidadKg: document.getElementById('tCapacidadKg').value.trim(),
-        tipoMatafuego: document.getElementById('tTipoMatafuego').value.trim()
+        responsableEntrega: document.getElementById('tResponsableEntrega').value.trim(),
+        transferencia: document.getElementById('mTransferencia').value.trim()
       };
-      guardarTrazabilidadSiCorresponde(filaEnEdicion, valoresTraz); // en segundo plano, no bloquea el guardado del pedido
+      // en segundo plano, no bloquea el guardado del pedido
+      guardarTrazabilidadSiCorresponde(filaEnEdicion, comunes, recolectarUnidadesTraz());
     }
 
-    mostrarToast('Nota N° ' + data.pedido.np + ' actualizada', 'ok');
+    const extra = await cerrarHermanasTildadas(filaEnEdicion, npElegidos, npDatos);
+    mostrarToast('Nota N° ' + data.pedido.np + ' actualizada' + extra, extra.includes('No se cerraron') || extra.includes('NO se cerraron') ? 'err' : 'ok');
     cerrarModal();
     poblarFiltrosDinamicos();
     onFiltrosChange();
