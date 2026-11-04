@@ -304,7 +304,7 @@ tr.fila-descuento:hover td:first-child{background:#FBDCDC}
   <div class="hleft">
     <span class="logo-badge">GRIFFOULIERE</span>
     <span class="htitle">Notas de Pedido</span>
-    <span class="hsub">Tablero de gestión · mostrando 2026 en adelante · <span title="Versión del tablero">v03.11.26-c</span></span>
+    <span class="hsub">Tablero de gestión · mostrando 2026 en adelante · <span title="Versión del tablero">v03.11.26-d</span></span>
   </div>
   <div class="user-bar">
     <span class="uname" id="userNombre">—</span>
@@ -470,7 +470,7 @@ tr.fila-descuento:hover td:first-child{background:#FBDCDC}
     <div class="chart-card" style="margin-bottom:14px">
       <div class="chart-card-title">Ingresos a stock por mes</div>
       <div class="chart-wrap"><canvas id="chart-kpi-stock"></canvas></div>
-      <div class="chart-desc">Cantidad de ítems que pasaron a INGRESO A STOCK cada mes (más de 30 días en depósito sin retirarse, o pasados a mano). Se cuenta por la fecha de ingreso a stock, respetando los filtros de arriba.</div>
+      <div class="chart-desc">Cantidad de ítems que se pasaron a INGRESO A STOCK cada mes desde Gestionar. Se cuenta por la fecha en que se hizo el cambio, respetando los filtros de arriba.</div>
     </div>
 
     <div class="chart-card">
@@ -1673,7 +1673,7 @@ function renderKPI(filtrados) {
       desc: 'Todo lo que ya llegó: cumplido y retirado, esperando en depósito, o ingresado a stock.' },
     { lbl: '% Cumplidas', val: pct(nCumplidas, total), color: 'ok', desc: 'Ítems ya marcados como Cumplido sobre el total filtrado.' },
     { lbl: '% Cumplidas Depósito', val: pct(nCumplidasDeposito, total), color: 'ok', desc: 'Llegaron a depósito pero todavía no se retiraron.' },
-    { lbl: '% Ingreso a stock', val: pct(nStock, total), color: '', desc: 'Más de 30 días en depósito sin retirarse (o pasados a stock a mano).' },
+    { lbl: '% Ingreso a stock', val: pct(nStock, total), color: '', desc: 'Ítems pasados a INGRESO A STOCK desde Gestionar.' },
     { lbl: '% Con Fecha de Cumplimiento', val: pct(nConFecha, total), color: '', desc: 'Ya tienen registrada la fecha real de recepción.' },
     { lbl: '% Con Transferencia', val: pct(nTransferencia, total), color: '', desc: 'Ya tienen cargado un N° de Transferencia.' },
     { lbl: '% Con PIM/SC', val: pct(nPim, total), color: '', desc: 'Ya tienen cargado un N° de PIM/SC.' },
@@ -3425,7 +3425,7 @@ function renderInforme() {
 
   const cont = document.getElementById('informeContent');
   const seccionStock = !stock.length ? '' : `
-    <div style="font-size:13px;font-weight:700;margin:18px 0 8px">En stock — más de 30 días en depósito (${stock.length})</div>
+    <div style="font-size:13px;font-weight:700;margin:18px 0 8px">En stock (${stock.length})</div>
     <div class="tbl-card"><div class="twrap" style="display:block"><table>
       <thead><tr><th>N° NP</th><th>Artículo</th><th>Cant.</th><th>Destino</th><th>Solicitante</th><th>Centro de costo</th><th>Llegó a depósito</th><th>Ingresó a stock</th></tr></thead>
       <tbody>${stock.map(p => `<tr>
@@ -3481,7 +3481,7 @@ function generarTextoInforme(items) {
   });
   const stock = obtenerItemsStock();
   if (stock.length) {
-    texto += `\nEN STOCK — más de 30 días en depósito: ${stock.length} ítem(s)\n\n`;
+    texto += `\nEN STOCK: ${stock.length} ítem(s)\n\n`;
     stock.forEach(p => {
       texto += `• NP ${p.np} — ${p.articulo || ''} (x${p.cantidad || 1})\n`;
       texto += `   Destino: ${p.destino || '-'}  |  Llegó a depósito: ${p.fechaCumplimiento || '-'}  |  Ingresó a stock: ${p.fechaIngresoStock || '-'}\n\n`;
@@ -3560,7 +3560,7 @@ function exportarInformePDF() {
   if (stock.length) {
     const yIni = (doc.lastAutoTable ? doc.lastAutoTable.finalY : 20) + 10;
     doc.setFontSize(10); doc.setTextColor(26, 26, 26);
-    doc.text('En stock — más de 30 días en depósito (' + stock.length + ')', 10, yIni);
+    doc.text('En stock (' + stock.length + ')', 10, yIni);
     doc.autoTable({
       startY: yIni + 3,
       head: [['N° NP','Artículo','Cant.','Destino','Solicitante','Centro de costo','Llegó a depósito','Ingresó a stock']],
